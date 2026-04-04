@@ -1,18 +1,77 @@
-CREATE TABLE Teacher (
-    TeacherID INT PRIMARY KEY, -- Primary key for the Teacher entity
-    Name VARCHAR(255) -- Attribute for Teacher's name
+CREATE TABLE CUSTOMER
+(
+  c_first_name VARCHAR(30) NOT NULL,
+  c_last_name VARCHAR(30) NOT NULL,
+  c_email VARCHAR(60) NOT NULL,
+  c_phone INT NOT NULL,
+  c_ID INT NOT NULL,
+  PRIMARY KEY (c_ID)
 );
 
-CREATE TABLE "Group" ( -- Using quotes for "Group" as it can be a reserved keyword
-    GroupID INT PRIMARY KEY, -- Primary key for the Group entity
-    GroupName VARCHAR(255), -- Attribute for Group's name
-    TeacherID INT, -- Foreign key from the "Manages" relationship (Many-to-One: A Group is managed by one Teacher)
-    FOREIGN KEY (TeacherID) REFERENCES Teacher(TeacherID) -- Establishes the foreign key constraint
+CREATE TABLE TOUR
+(
+  t_name VARCHAR(100) NOT NULL,
+  max_participants INT NOT NULL,
+  price INT NOT NULL,
+  t_type VARCHAR(30) NOT NULL,
+  area VARCHAR(100) NOT NULL,
+  accessibility INT NOT NULL,
+  level INT NOT NULL,
+  PRIMARY KEY (t_name)
 );
 
-CREATE TABLE Child (
-    ChildID INT PRIMARY KEY, -- Primary key for the Child entity
-    Age INT, -- Attribute for Child's age
-    GroupID INT, -- Foreign key from the "BelongsTo" relationship (Many-to-One: A Child belongs to one Group)
-    FOREIGN KEY (GroupID) REFERENCES "Group"(GroupID) -- Establishes the foreign key constraint
+CREATE TABLE GUIDE
+(
+  g_ID INT NOT NULL,
+  g_first_name VARCHAR(30) NOT NULL,
+  g_last_name VARCHAR(30) NOT NULL,
+  g_phone INT NOT NULL,
+  g_email VARCHAR(60) NOT NULL,
+  school INT NOT NULL,
+  PRIMARY KEY (g_ID)
+);
+
+CREATE TABLE TOURINSTANCE
+(
+  t_date DATE NOT NULL,
+  start_time DATETIME NOT NULL,
+  end_time DATETIME NOT NULL,
+  t_i_ID INT NOT NULL,
+  g_ID INT NOT NULL,
+  t_name INT NOT NULL,
+  PRIMARY KEY (t_i_ID),
+  FOREIGN KEY (g_ID) REFERENCES GUIDE(g_ID),
+  FOREIGN KEY (t_name) REFERENCES TOUR(t_name)
+);
+
+CREATE TABLE BOOKINGS
+(
+  b_ID INT NOT NULL,
+  amount_pepole INT NOT NULL,
+  b_date DATE NOT NULL,
+  status BIT NOT NULL,
+  t_i_ID INT NOT NULL,
+  c_ID INT NOT NULL,
+  PRIMARY KEY (b_ID),
+  FOREIGN KEY (t_i_ID) REFERENCES TOURINSTANCE(t_i_ID),
+  FOREIGN KEY (c_ID) REFERENCES CUSTOMER(c_ID)
+);
+
+CREATE TABLE STATION
+(
+  s_name VARCHAR(100) NOT NULL,
+  addres VARCHAR(150) NOT NULL,
+  description VARCHAR(300) NOT NULL,
+  PRIMARY KEY (s_name)
+);
+
+CREATE TABLE TOURSTATION
+(
+  index INT NOT NULL,
+  s_during FLOAT NOT NULL,
+  t_name INT NOT NULL,
+  s_name INT NOT NULL,
+  PRIMARY KEY (index, t_name, s_name),
+  FOREIGN KEY (t_name) REFERENCES TOUR(t_name),
+  FOREIGN KEY (s_name) REFERENCES STATION(s_name)
 );
