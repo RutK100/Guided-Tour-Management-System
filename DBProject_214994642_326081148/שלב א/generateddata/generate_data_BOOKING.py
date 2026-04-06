@@ -23,13 +23,13 @@ def create_massive_data():
             days_ago = random.randint(1, 365)
             b_date = datetime.now() - timedelta(days=days_ago)
             
-            status = random.choice(['TRUE', 'FALSE'])
+            b_status = random.choice(['TRUE', 'FALSE'])
             t_i_id = random.choice(instance_ids)
             c_id = random.choice(customer_ids)
 
             # יצירת השורה של ה-SQL
-            sql_line = f"INSERT INTO BOOKINGS (b_ID, amount_pepole, b_date, status, t_i_ID, c_ID) " \
-                       f"VALUES ({b_id}, {amount}, '{b_date.date()}', {status}, {t_i_id}, {c_id});\n"
+            sql_line = f"INSERT INTO BOOKINGS (b_ID, amount_pepole, b_date, b_status, t_i_ID, c_ID) " \
+                       f"VALUES ({b_id}, {amount}, '{b_date.date()}', {b_status}, {t_i_id}, {c_id});\n"
             
             f.write(sql_line)
 

@@ -15,7 +15,7 @@ CREATE TABLE TOUR (
     t_type VARCHAR(30) NOT NULL,
     area VARCHAR(100) NOT NULL,
     accessibility INT NOT NULL,
-    level INT NOT NULL,
+    t_level INT NOT NULL,
     PRIMARY KEY (t_name)
 );
 
@@ -31,8 +31,8 @@ CREATE TABLE GUIDE (
 
 CREATE TABLE STATION (
     s_name VARCHAR(100) NOT NULL,
-    addres VARCHAR(150) NOT NULL,
-    description VARCHAR(300) NOT NULL,
+    s_address VARCHAR(150) NOT NULL,
+    descrip VARCHAR(300) NOT NULL,
     PRIMARY KEY (s_name)
 );
 
@@ -52,7 +52,7 @@ CREATE TABLE BOOKINGS (
     b_ID INT NOT NULL,
     amount_pepole INT NOT NULL,
     b_date DATE NOT NULL,
-    status BOOLEAN NOT NULL,
+    b_status BOOLEAN NOT NULL,
     t_i_ID INT NOT NULL,
     c_ID INT NOT NULL,
     PRIMARY KEY (b_ID),
@@ -61,7 +61,7 @@ CREATE TABLE BOOKINGS (
 );
 
 CREATE TABLE TOURSTATION (
-    index INT NOT NULL,
+    t_index INT NOT NULL,
     s_during FLOAT NOT NULL,
     t_name VARCHAR(100) NOT NULL,
     s_name VARCHAR(100) NOT NULL, 
