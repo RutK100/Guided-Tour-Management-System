@@ -112,19 +112,19 @@
             },
             {
               "id": "74f180e6-3df1-4b48-97bb-3693a931cb84",
-              "name": "level",
+              "name": "t_level",
               "type": "INT",
               "isPrimaryKey": false
             }
           ],
           "numberOfGroups": 0,
-          "isSelected": false
+          "isSelected": true
         },
         "measured": {
           "width": 240,
           "height": 204
         },
-        "selected": false,
+        "selected": true,
         "dragging": false
       },
       {
@@ -159,7 +159,7 @@
             },
             {
               "id": "9ee993a4-b69b-49d8-852f-b08f35e624bc",
-              "name": "status",
+              "name": "b_status",
               "type": "Custom",
               "isPrimaryKey": false,
               "size": "BOOLEAN"
@@ -387,14 +387,14 @@
             },
             {
               "id": "f47e68c9-15d3-47fa-a4dd-4c5da928c650",
-              "name": "addres",
+              "name": "s_address",
               "type": "VARCHAR(n)",
               "isPrimaryKey": false,
               "size": "150"
             },
             {
               "id": "1a64c4bc-5d4d-4d60-881a-30ed880d5161",
-              "name": "description",
+              "name": "descrip",
               "type": "VARCHAR(n)",
               "isPrimaryKey": false,
               "size": "300"
@@ -423,7 +423,7 @@
           "columns": [
             {
               "id": "13b812e4-02fd-417b-8a3c-29c1f12a79d3",
-              "name": "index",
+              "name": "t_index",
               "type": "INT",
               "isPrimaryKey": true,
               "isOptional": false
@@ -625,24 +625,18 @@
       }
     ],
     "viewport": {
-      "x": -54.95707920437383,
-      "y": 205.88011661177293,
-      "zoom": 1
+      "x": -25.440039273933053,
+      "y": 188.94063799861698,
+      "zoom": 0.9005566184657022
     }
   },
   "name": "Guided Tours-Relational Schema",
   "folder": {
-    "name": "Guided Tours",
-    "folderType": 2,
-    "parentFolder": {
-      "depth": 0,
-      "id": 260772,
-      "name": "Diagrams",
-      "folderType": 1
-    },
-    "depth": 1,
-    "id": 260778
+    "name": "Diagrams",
+    "folderType": 1,
+    "depth": 0,
+    "id": 260772
   },
   "id": 389715,
-  "updatedAtTimestamp": 1775334497
+  "updatedAtTimestamp": 1775508076
 }

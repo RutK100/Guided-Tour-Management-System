@@ -703,7 +703,7 @@
           "y": -59.32547259682899
         },
         "data": {
-          "label": "addres",
+          "label": "s_address",
           "types": [],
           "isSelected": false,
           "isConnectable": false
@@ -724,7 +724,7 @@
           "y": 1.653242429014405
         },
         "data": {
-          "label": "description",
+          "label": "descrip",
           "types": [],
           "isSelected": false,
           "isConnectable": false
@@ -852,7 +852,7 @@
           "y": 59.73646621697052
         },
         "data": {
-          "label": "level",
+          "label": "t_level",
           "types": [],
           "isSelected": false,
           "isConnectable": false
@@ -893,7 +893,7 @@
           "y": 86.78285062614057
         },
         "data": {
-          "label": "index",
+          "label": "t_index",
           "types": {
             "Unique": true
           },
@@ -990,7 +990,7 @@
           "y": -127.19175234513082
         },
         "data": {
-          "label": "status",
+          "label": "b_status",
           "types": [],
           "isSelected": false
         },
@@ -1379,8 +1379,8 @@
       }
     ],
     "viewport": {
-      "x": 63.82286401248268,
-      "y": 170.88429544406188,
+      "x": 18.82286401248257,
+      "y": 276.8842954440619,
       "zoom": 1
     }
   },
@@ -1398,5 +1398,5 @@
     "id": 260778
   },
   "id": 338898,
-  "updatedAtTimestamp": 1775324250
+  "updatedAtTimestamp": 1775507702
 }
