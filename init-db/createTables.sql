@@ -65,7 +65,7 @@ CREATE TABLE TOURSTATION (
     s_during FLOAT NOT NULL,
     t_name VARCHAR(100) NOT NULL,
     s_name VARCHAR(100) NOT NULL, 
-    PRIMARY KEY (index, t_name, s_name),
+    PRIMARY KEY (t_index, t_name, s_name),
     FOREIGN KEY (t_name) REFERENCES TOUR(t_name),
     FOREIGN KEY (s_name) REFERENCES STATION(s_name)
 );
