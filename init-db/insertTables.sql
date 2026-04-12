@@ -42509,4 +42509,5 @@ INSERT INTO BOOKINGS (b_ID, amount_pepole, b_date, b_status, t_i_ID, c_ID) VALUE
 INSERT INTO BOOKINGS (b_ID, amount_pepole, b_date, b_status, t_i_ID, c_ID) VALUES (19997, 3, '2026-02-10', FALSE, 161, 369);
 INSERT INTO BOOKINGS (b_ID, amount_pepole, b_date, b_status, t_i_ID, c_ID) VALUES (19998, 2, '2026-01-16', FALSE, 47, 341);
 INSERT INTO BOOKINGS (b_ID, amount_pepole, b_date, b_status, t_i_ID, c_ID) VALUES (19999, 5, '2025-10-19', FALSE, 235, 224);
+
 INSERT INTO BOOKINGS (b_ID, amount_pepole, b_date, b_status, t_i_ID, c_ID) VALUES (20000, 8, '2025-12-17', FALSE, 434, 201);
