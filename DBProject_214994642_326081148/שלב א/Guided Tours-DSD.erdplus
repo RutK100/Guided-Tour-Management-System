@@ -387,7 +387,7 @@
             },
             {
               "id": "f47e68c9-15d3-47fa-a4dd-4c5da928c650",
-              "name": "s_address",
+              "name": "s_=",
               "type": "VARCHAR(n)",
               "isPrimaryKey": false,
               "size": "150"
