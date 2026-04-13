@@ -37,7 +37,7 @@ ERD (Entity Relationship Diagram)
 (כאן תעלו את התמונה לתיקיית images ותקשרו: ![ERD](images/erd.png))
 
 DSD (Data Structure Diagram)
-(כאן תעלו את התמונה: ![DSD](images/dsd.png))
+(כאן תעלו את התמונה: ![DSD](//DBProject_214994642_326081148/phaseA/DSD_image.png))
 
 📜 סקריפטים של SQL
 המערכת מבוססת על הסקריפטים הבאים הנמצאים בתיקיית init-db:
