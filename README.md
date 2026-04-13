@@ -61,7 +61,7 @@ Provide the following SQL scripts:
 📜[View `TOUR.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/TOUR.csv)
 
   
-![image](DBProject_214994642_326081148\phaseA\images\STATION.png)
+![image](DBProject_214994642_326081148/phaseA/images/STATION.png)
 
 📜 **[View `STATION.csv`](Phase1/mockData/apotropusMOCK_DATA.csv)**
 
