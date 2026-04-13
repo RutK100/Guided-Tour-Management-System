@@ -11,7 +11,7 @@
 
 תרשימי מבנה (ERD & DSD)
 
-![ERD Diagram](ERD_image.png)
+
 
 סקריפטים של SQL
 
