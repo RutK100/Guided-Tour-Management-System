@@ -11,7 +11,7 @@
 
 תרשימי מבנה (ERD & DSD)
 
-![ERD Diagram](//DBProject_214994642_326081148/phaseA/ERD_image.png)
+![ERD Diagram](DBProject_214994642_326081148/phaseA/ERD_image.png)
 
 
 סקריפטים של SQL
