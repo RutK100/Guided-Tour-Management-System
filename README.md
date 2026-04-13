@@ -11,7 +11,7 @@
 
 תרשימי מבנה (ERD & DSD)
 
-("C:\Users\shire\Desktop\מיניפ בבסנת\Guided-Tour-Management-System\DBProject_214994642_326081148\שלב א\ERD_image.png")
+![ERD Diagram](ERD_image.png)
 
 סקריפטים של SQL
 
