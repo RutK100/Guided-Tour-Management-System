@@ -38,7 +38,19 @@ Operational Staff can use the system for record-keeping of tour executions, sche
 Provide the following SQL scripts:  
 - **Create Tables Script** - The SQL script for creating the database tables is available in the repository:
 
-- 📜**[View `create_tables.sql`](init-db/2createTables.sql)**  
+- 📜**[View `create_tables.sql`](init-db/2createTables.sql)**
+- - **Insert Data Script** - The SQL script for insert data to the database tables is available in the repository:  
+
+📜 **[View `insert_tables.sql`](init-db/3insertTables.sql)**  
+ 
+- **Drop Tables Script** - The SQL script for droping all tables is available in the repository:  
+
+📜 **[View `drop_tables.sql`](init-db/1dropTables.sql)**  
+
+- **Select All Data Script**  - The SQL script for selectAll tables is available in the repository:  
+
+📜 **[View `selectAll_tables.sql`](init-db/4selectAll.sql)**  
+  
 
 
 
