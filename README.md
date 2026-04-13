@@ -13,6 +13,7 @@
 
 ![ERD Diagram](ERD_image.png)
 
+
 סקריפטים של SQL
 
 תהליך חילול הנתונים (Data Generation)
