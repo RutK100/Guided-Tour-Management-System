@@ -58,40 +58,48 @@ Provide the following SQL scripts:
 🗒️ **[View `selectAll_tables.sql`](init-db/4selectAll.sql)**  
 
 ###  Data  
-#### 1️⃣ First tool: using [mockaro](https://www.mockaroo.com/) to create csv file
+#### 1️⃣ First Method: Direct SQL Scripts (Mockaroo Export)
+#### Tool: using [mockaro](https://www.mockaroo.com/) to create csv file
+We exported structured data from Mockaroo as .sql files containing INSERT statements. These scripts were integrated into our workspace and executed to populate the core tables.
+
 #####  Entering a data to STATION table
 - station id scope: 1-500
-- 🗒️[View `STATION.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/STATION.csv)
+- 🗒️[View `STATION.sql`](DBProject_214994642_326081148/phaseA/mockarooFiles/STATION.sql)
+
+![genererte station's data in the site](DBProject_214994642_326081148/phaseA/images/STATION.png)
+
+
+#### 2️⃣ Second Method: CSV Import via pgAdmin
+#### Tool: import csv files (that generated in mockaroo)
+We generated raw data in CSV format and utilized the pgAdmin Import Tool. This allowed us to map spreadsheet data directly to our existing database schema efficiently.
+
+#####  Entering a data to CUSTOMER table
 #####  Entering a data to TOUR table
 - tour id scope 1-500
-🗒️[View `TOUR.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/TOUR.csv)
+🗒️ **[View `TOUR.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/TOUR.csv)**
 
-  
-![image](DBProject_214994642_326081148/phaseA/images/STATION.png)
-
-🗒️ **[View `STATION.csv`](Phase1/mockData/apotropusMOCK_DATA.csv)**
-
-TO DO  in pgadmin
-
-#### 2️⃣ Second tool: using [generatedata](https://generatedata.com/generator). to create csv file 
-#####  Entering a data to CUSTOMER table
-
-🗒️ **[View `CUSTOMER.csv`](DBProject_214994642_326081148/phaseA/generateData/CUSTOMER.csv)**
-לעשותתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתת תמונות מהאתר השני
+🗒️ **[View `GUIDE.csv`](DBProject_214994642_326081148/phaseA/generateData/GUIDE.csv)**
 
 
-#####  Entering a data to baby table
--  Bayby id scope 801-1200
--  Group Number  range 1-400
+![import data](DBProject_214994642_326081148\phaseA\images\import2.png)
+
+![import seccside](DBProject_214994642_326081148\phaseA\images\import_guid_pgAdmin.png)
 
 
 
 
-#### 3️⃣Third tool: using python to create csv file
+
+#### 3️⃣ third method: Custom Python Scripting & SQL Generation
+#### tools: using python to create csv file
+We developed a Python script to handle complex data logic, such as the many-to-many relationship between tours and stations. This script automatically generated precise SQL INSERT statements, ensuring data integrity and consistency across the database.
+
+[script python for booking scama](DBProject_214994642_326081148\phaseA\images\script.png)
+
+[booking data](DBProject_214994642_326081148\phaseA\images\data_booking_pgAdmin.png)
+
 
 ### Backup 
 -   backups files are kept with the date and hour of the backup:  
-
 
 [go to backup folder](DBProject_214994642_326081148/PhaseA/Backup)
 
