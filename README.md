@@ -101,7 +101,7 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 ### Backup 
 -   backups files are kept with the date and hour of the backup:  
 
-[go to backup folder](DBProject_214994642_326081148/PhaseA/Backup)
+[go to backup folder](DBProject_214994642_326081148/PhaseA/backups)
 
 
 
