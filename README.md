@@ -14,7 +14,8 @@ Rot Kalimi and Shirel Farzam
 ## Phase 1: Design and Build the Database  
 
 ### Introduction
-TO DO 
+SweeTour is an advanced platform designed for planning and managing guided tours, streamlining the connection between tour operators, guides, and customers. The system offers a comprehensive solution for the entire "tour experience"—from building detailed routes with specific time stations and geographic locations, to managing guide assignments and tracking real-time bookings and revenue.  
+
 ### Purpose of the Database
 This database serves as a structured and reliable solution for tour management systems to:
 Organize tour routes based on geographic areas, pricing, and difficulty levels.
@@ -43,7 +44,7 @@ A folder containing images from our system built on the site.
 Provide the following SQL scripts:  
 - **Create Tables Script** - The SQL script for creating the database tables is available in the repository:
 
-📜**[View `create_tables.sql`](init-db/2createTables.sql)**
+📜 **[View `create_tables.sql`](init-db/2createTables.sql)**
  - **Insert Data Script** - The SQL script for insert data to the database tables is available in the repository:  
 
 📜 **[View `insert_tables.sql`](init-db/3insertTables.sql)**  
