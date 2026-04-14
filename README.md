@@ -60,15 +60,19 @@ Provide the following SQL scripts:
 ###  Data  
 #### 1️⃣ First Method: Direct SQL Scripts (Mockaroo Export)
 #### Tool: using [mockaro](https://www.mockaroo.com/) to create csv file
+We exported structured data from Mockaroo as .sql files containing INSERT statements. These scripts were integrated into our workspace and executed to populate the core tables.
+
 #####  Entering a data to STATION table
 - station id scope: 1-500
-- 🗒️[View `STATION.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/STATION.sql)
+- 🗒️[View `STATION.sql`](DBProject_214994642_326081148/phaseA/mockarooFiles/STATION.sql)
 
-![image](DBProject_214994642_326081148/phaseA/images/STATION.png)
+![genererte station's data in the site](DBProject_214994642_326081148/phaseA/images/STATION.png)
 
 
 #### 2️⃣ Second Method: CSV Import via pgAdmin
-#### Tool: using . to create csv file 
+#### Tool: import csv files (that generated in mockaroo)
+We generated raw data in CSV format and utilized the pgAdmin Import Tool. This allowed us to map spreadsheet data directly to our existing database schema efficiently.
+
 #####  Entering a data to CUSTOMER table
 #####  Entering a data to TOUR table
 - tour id scope 1-500
