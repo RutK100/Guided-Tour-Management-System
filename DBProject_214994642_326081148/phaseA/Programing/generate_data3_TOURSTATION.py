@@ -5,7 +5,7 @@ import random
 TOURS_FILE = 'TOUR.csv'
 STATIONS_FILE = 'STATION.csv'
 OUTPUT_FILE = 'TOURSTATION_INSERT.sql'
-TARGET_ROWS = 500  # היעד הסופי שלכן
+TARGET_ROWS = 500  
 
 def generate_tour_stations():
     try:

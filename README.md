@@ -1,9 +1,10 @@
 # Guided-Tour-Management-System
-🌍 SweeTour - מערכת לניהול סיורים ותחנות
+🌍 SweeTour - Tour management system
 Rot Kalimi and Shirel Farzam
 ## Table of Contents  
 - [Phase 1: Design and Build the Database](#phase-1-design-and-build-the-database)  
-  - [Introduction](#introduction)  
+  - [Introduction](#introduction)
+  - [Images from the site](#images-from-the-site)  
   - [ERD (Entity-Relationship Diagram)](#erd-entity-relationship-diagram)  
   - [DSD (Data Structure Diagram)](#dsd-data-structure-diagram)  
   - [SQL Scripts](#sql-scripts)  
@@ -27,6 +28,10 @@ Tour Operators and Administrators can use this database to efficiently design ne
 Tour Guides can track their assigned tour instances, view the specific sequence of stations, and prepare for site-specific durations.
 Travelers and Clients can explore available tours based on their preferred area, budget, and accessibility requirements.
 Operational Staff can use the system for record-keeping of tour executions, scheduling, and resource management.
+
+### images-from-the-site
+A folder containing images from our system built on the site.
+[Click here to view the images](DBProject_214994642_326081148/images)
 
 ###  ERD (Entity-Relationship Diagram)    
 ![ERD Diagram](DBProject_214994642_326081148/phaseA/ERD_image.png)
