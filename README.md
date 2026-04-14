@@ -81,9 +81,9 @@ We generated raw data in CSV format and utilized the pgAdmin Import Tool. This a
 🗒️ **[View `GUIDE.csv`](DBProject_214994642_326081148/phaseA/generateData/GUIDE.csv)**
 
 
-![import data](DBProject_214994642_326081148\phaseA\images\import2.png)
+![import data](DBProject_214994642_326081148/phaseA/images/import2.png)
 
-![import seccside](DBProject_214994642_326081148\phaseA\images\import_guid_pgAdmin.png)
+![import seccside](DBProject_214994642_326081148/phaseA/images/import_guid_pgAdmin.png)
 
 
 
@@ -93,9 +93,9 @@ We generated raw data in CSV format and utilized the pgAdmin Import Tool. This a
 #### tools: using python to create csv file
 We developed a Python script to handle complex data logic, such as the many-to-many relationship between tours and stations. This script automatically generated precise SQL INSERT statements, ensuring data integrity and consistency across the database.
 
-[script python for booking scama](DBProject_214994642_326081148\phaseA\images\script.png)
+[script python for booking scama](DBProject_214994642_326081148/phaseA/images/script.png)
 
-[booking data](DBProject_214994642_326081148\phaseA\images\data_booking_pgAdmin.png)
+[booking data](DBProject_214994642_326081148/phaseA/images/data_booking_pgAdmin.png)
 
 
 ### Backup 
