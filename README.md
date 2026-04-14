@@ -44,39 +44,39 @@ A folder containing images from our system built on the site.
 Provide the following SQL scripts:  
 - **Create Tables Script** - The SQL script for creating the database tables is available in the repository:
 
-📜 **[View `create_tables.sql`](init-db/2createTables.sql)**
+🗒️ **[View `create_tables.sql`](init-db/2createTables.sql)**
  - **Insert Data Script** - The SQL script for insert data to the database tables is available in the repository:  
 
-📜 **[View `insert_tables.sql`](init-db/3insertTables.sql)**  
+🗒️ **[View `insert_tables.sql`](init-db/3insertTables.sql)**  
  
 - **Drop Tables Script** - The SQL script for droping all tables is available in the repository:  
 
-📜 **[View `drop_tables.sql`](init-db/1dropTables.sql)**  
+🗒️ **[View `drop_tables.sql`](init-db/1dropTables.sql)**  
 
 - **Select All Data Script**  - The SQL script for selectAll tables is available in the repository: 
 
-📜 **[View `selectAll_tables.sql`](init-db/4selectAll.sql)**  
+🗒️ **[View `selectAll_tables.sql`](init-db/4selectAll.sql)**  
 
 ###  Data  
-####  First tool: using [mockaro](https://www.mockaroo.com/) to create csv file
+#### 1️⃣ First tool: using [mockaro](https://www.mockaroo.com/) to create csv file
 #####  Entering a data to STATION table
 - station id scope: 1-500
-- 📜[View `STATION.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/STATION.csv)
+- 🗒️[View `STATION.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/STATION.csv)
 #####  Entering a data to TOUR table
 - tour id scope 1-500
-📜[View `TOUR.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/TOUR.csv)
+🗒️[View `TOUR.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/TOUR.csv)
 
   
 ![image](DBProject_214994642_326081148/phaseA/images/STATION.png)
 
-📜 **[View `STATION.csv`](Phase1/mockData/apotropusMOCK_DATA.csv)**
+🗒️ **[View `STATION.csv`](Phase1/mockData/apotropusMOCK_DATA.csv)**
 
 TO DO  in pgadmin
 
-####  Second tool: using [generatedata](https://generatedata.com/generator). to create csv file 
+#### 2️⃣ Second tool: using [generatedata](https://generatedata.com/generator). to create csv file 
 #####  Entering a data to CUSTOMER table
 
-📜 **[View `CUSTOMER.csv`](DBProject_214994642_326081148/phaseA/generateData/CUSTOMER.csv)**
+🗒️ **[View `CUSTOMER.csv`](DBProject_214994642_326081148/phaseA/generateData/CUSTOMER.csv)**
 לעשותתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתת תמונות מהאתר השני
 
 
@@ -87,7 +87,7 @@ TO DO  in pgadmin
 
 
 
-####  Third tool: using python to create csv file
+#### 3️⃣Third tool: using python to create csv file
 
 ### Backup 
 -   backups files are kept with the date and hour of the backup:  
