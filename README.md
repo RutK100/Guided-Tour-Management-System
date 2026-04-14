@@ -14,7 +14,8 @@ Rot Kalimi and Shirel Farzam
 ## Phase 1: Design and Build the Database  
 
 ### Introduction
-TO DO 
+SweeTour is an advanced platform designed for planning and managing guided tours, streamlining the connection between tour operators, guides, and customers. The system offers a comprehensive solution for the entire "tour experience"—from building detailed routes with specific time stations and geographic locations, to managing guide assignments and tracking real-time bookings and revenue.  
+
 ### Purpose of the Database
 This database serves as a structured and reliable solution for tour management systems to:
 Organize tour routes based on geographic areas, pricing, and difficulty levels.
@@ -31,7 +32,7 @@ Operational Staff can use the system for record-keeping of tour executions, sche
 
 ### images-from-the-site
 A folder containing images from our system built on the site.
-[Click here to view the images](DBProject_214994642_326081148/images)
+[Click here to view the images](DBProject_214994642_326081148/phaseA/images)
 
 ###  ERD (Entity-Relationship Diagram)    
 ![ERD Diagram](DBProject_214994642_326081148/phaseA/ERD_image.png)
@@ -43,54 +44,62 @@ A folder containing images from our system built on the site.
 Provide the following SQL scripts:  
 - **Create Tables Script** - The SQL script for creating the database tables is available in the repository:
 
-📜**[View `create_tables.sql`](init-db/2createTables.sql)**
+🗒️ **[View `create_tables.sql`](init-db/2createTables.sql)**
  - **Insert Data Script** - The SQL script for insert data to the database tables is available in the repository:  
 
-📜 **[View `insert_tables.sql`](init-db/3insertTables.sql)**  
+🗒️ **[View `insert_tables.sql`](init-db/3insertTables.sql)**  
  
 - **Drop Tables Script** - The SQL script for droping all tables is available in the repository:  
 
-📜 **[View `drop_tables.sql`](init-db/1dropTables.sql)**  
+🗒️ **[View `drop_tables.sql`](init-db/1dropTables.sql)**  
 
 - **Select All Data Script**  - The SQL script for selectAll tables is available in the repository: 
 
-📜 **[View `selectAll_tables.sql`](init-db/4selectAll.sql)**  
+🗒️ **[View `selectAll_tables.sql`](init-db/4selectAll.sql)**  
 
 ###  Data  
-####  First tool: using [mockaro](https://www.mockaroo.com/) to create csv file
+#### 1️⃣ First Method: Direct SQL Scripts (Mockaroo Export)
+#### Tool: using [mockaro](https://www.mockaroo.com/) to create csv file
+We exported structured data from Mockaroo as .sql files containing INSERT statements. These scripts were integrated into our workspace and executed to populate the core tables.
+
 #####  Entering a data to STATION table
 - station id scope: 1-500
-- 📜[View `STATION.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/STATION.csv)
+- 🗒️[View `STATION.sql`](DBProject_214994642_326081148/phaseA/mockarooFiles/STATION.sql)
+
+![genererte station's data in the site](DBProject_214994642_326081148/phaseA/images/STATION.png)
+
+
+#### 2️⃣ Second Method: CSV Import via pgAdmin
+#### Tool: import csv files (that generated in mockaroo)
+We generated raw data in CSV format and utilized the pgAdmin Import Tool. This allowed us to map spreadsheet data directly to our existing database schema efficiently.
+
+#####  Entering a data to CUSTOMER table
 #####  Entering a data to TOUR table
 - tour id scope 1-500
-📜[View `TOUR.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/TOUR.csv)
+🗒️ **[View `TOUR.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/TOUR.csv)**
 
-  
-![image](DBProject_214994642_326081148/phaseA/images/STATION.png)
-
-📜 **[View `STATION.csv`](Phase1/mockData/apotropusMOCK_DATA.csv)**
-
-TO DO  in pgadmin
-
-####  Second tool: using [generatedata](https://generatedata.com/generator). to create csv file 
-#####  Entering a data to CUSTOMER table
-
-📜 **[View `CUSTOMER.csv`](DBProject_214994642_326081148/phaseA/generateData/CUSTOMER.csv)**
-לעשותתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתת תמונות מהאתר השני
+🗒️ **[View `GUIDE.csv`](DBProject_214994642_326081148/phaseA/generateData/GUIDE.csv)**
 
 
-#####  Entering a data to baby table
--  Bayby id scope 801-1200
--  Group Number  range 1-400
+![import data](DBProject_214994642_326081148/phaseA/images/import2.png)
+
+![import seccside](DBProject_214994642_326081148/phaseA/images/import_guid_pgAdmin.png)
 
 
 
 
-####  Third tool: using python to create csv file
+
+#### 3️⃣ third method: Custom Python Scripting & SQL Generation
+#### tools: using python to create csv file
+We developed a Python script to handle complex data logic, such as the many-to-many relationship between tours and stations. This script automatically generated precise SQL INSERT statements, ensuring data integrity and consistency across the database.
+
+![script python for booking scama](DBProject_214994642_326081148/phaseA/images/script.png)
+
+![booking data](DBProject_214994642_326081148/phaseA/images/data_booking_pgAdmin.png)
+
 
 ### Backup 
 -   backups files are kept with the date and hour of the backup:  
-
 
 [go to backup folder](DBProject_214994642_326081148/PhaseA/Backup)
 
