@@ -58,25 +58,25 @@ Provide the following SQL scripts:
 🗒️ **[View `selectAll_tables.sql`](init-db/4selectAll.sql)**  
 
 ###  Data  
-#### 1️⃣ First tool: using [mockaro](https://www.mockaroo.com/) to create csv file
+#### 1️⃣ First Method: Direct SQL Scripts (Mockaroo Export)
+#### Tool: using [mockaro](https://www.mockaroo.com/) to create csv file
 #####  Entering a data to STATION table
 - station id scope: 1-500
-- 🗒️[View `STATION.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/STATION.csv)
+- 🗒️[View `STATION.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/STATION.sql)
+
+![image](DBProject_214994642_326081148/phaseA/images/STATION.png)
+
+
+#### 2️⃣ Second Method: CSV Import via pgAdmin
+#### Tool: using . to create csv file 
+#####  Entering a data to CUSTOMER table
 #####  Entering a data to TOUR table
 - tour id scope 1-500
 🗒️[View `TOUR.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/TOUR.csv)
 
-  
-![image](DBProject_214994642_326081148/phaseA/images/STATION.png)
-
-🗒️ **[View `STATION.csv`](Phase1/mockData/apotropusMOCK_DATA.csv)**
-
-TO DO  in pgadmin
-
-#### 2️⃣ Second tool: using [generatedata](https://generatedata.com/generator). to create csv file 
-#####  Entering a data to CUSTOMER table
-
 🗒️ **[View `CUSTOMER.csv`](DBProject_214994642_326081148/phaseA/generateData/CUSTOMER.csv)**
+
+![image](DBProject_214994642_326081148\phaseA\images\import_guid_pgAdmin.png")
 לעשותתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתת תמונות מהאתר השני
 
 
