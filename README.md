@@ -31,7 +31,7 @@ Operational Staff can use the system for record-keeping of tour executions, sche
 
 ### images-from-the-site
 A folder containing images from our system built on the site.
-[Click here to view the images](DBProject_214994642_326081148/images)
+[Click here to view the images](./DBProject_214994642_326081148/images)
 
 ###  ERD (Entity-Relationship Diagram)    
 ![ERD Diagram](DBProject_214994642_326081148/phaseA/ERD_image.png)
