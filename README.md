@@ -76,17 +76,15 @@ We generated raw data in CSV format and utilized the pgAdmin Import Tool. This a
 #####  Entering a data to CUSTOMER table
 #####  Entering a data to TOUR table
 - tour id scope 1-500
-🗒️[View `TOUR.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/TOUR.csv)
+🗒️ **[View `TOUR.csv`](DBProject_214994642_326081148/phaseA/mockarooFiles/TOUR.csv)**
 
-🗒️ **[View `CUSTOMER.csv`](DBProject_214994642_326081148/phaseA/generateData/CUSTOMER.csv)**
-
-![image](DBProject_214994642_326081148\phaseA\images\import_guid_pgAdmin.png")
-לעשותתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתתת תמונות מהאתר השני
+🗒️ **[View `GUIDE.csv`](DBProject_214994642_326081148/phaseA/generateData/GUIDE.csv)**
 
 
-#####  Entering a data to baby table
--  Bayby id scope 801-1200
--  Group Number  range 1-400
+![import data](DBProject_214994642_326081148\phaseA\images\import2.png")
+
+![import seccside](DBProject_214994642_326081148\phaseA\images\import_guid_pgAdmin.png")
+
 
 
 
