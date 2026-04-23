@@ -102,6 +102,7 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 -   Clicking on the backup files (of the two methods required):  
 
 [backup from pgAdmin (UI)](DBProject_214994642_326081148/phaseA/backups/backup_23_04_2026.sql)
+
 [backup from CLI](DBProject_214994642_326081148/phaseA/backups/backup_cli_23_04.sql)
 
 -Pictures from the backup creation process:
