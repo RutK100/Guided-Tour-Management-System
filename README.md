@@ -89,8 +89,8 @@ We generated raw data in CSV format and utilized the pgAdmin Import Tool. This a
 
 
 
-#### 3️⃣ third method: Custom Python Scripting & SQL Generation
-#### tools: using python to create csv file
+#### 3️⃣ Third method: Custom Python Scripting & SQL Generation
+#### Tools: using python to create csv file
 We developed a Python script to handle complex data logic, such as the many-to-many relationship between tours and stations. This script automatically generated precise SQL INSERT statements, ensuring data integrity and consistency across the database.
 
 ![script python for booking scama](DBProject_214994642_326081148/phaseA/images/script.png)
