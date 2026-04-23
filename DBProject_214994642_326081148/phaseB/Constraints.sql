@@ -1,9 +1,12 @@
+--הוספת עמודה לטבלה לפי הצורך
+
 ALTER TABLE BOOKINGS
 ADD total_price DECIMAL(10, 2);
 
 ALTER TABLE TOUR
 ADD t_duration INT;
 
+--אילוצים
 ALTER TABLE BOOKINGS
 ADD CONSTRAINT chk_people_positive 
 CHECK (amount_pepole >= 0);
