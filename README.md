@@ -99,9 +99,16 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 
 
 ### Backup 
--   backups files are kept with the date and hour of the backup:  
+-   Clicking on the backup files (of the two methods required):  
 
-[go to backup folder](DBProject_214994642_326081148/phaseA/backups)
+[backup from pgAdmin (UI)](DBProject_214994642_326081148/phaseA/backups/backup_23_04_2026.sql)
+[backup from CLI](DBProject_214994642_326081148/phaseA/backups/backup_cli_23_04.sql)
+
+-Pictures from the backup creation process:
+
+![creating backup from pgAdmin (UI)](DBProject_214994642_326081148/phaseA/images/backup_pgAdmin1.png)
+![succeeded backup from pgAdmin (UI)](DBProject_214994642_326081148/phaseA/images/backup_pgAdmin2.png)
+![creating backup from CLI](DBProject_214994642_326081148/phaseA/images/backup_cli3.png)
 
 
 

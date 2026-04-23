@@ -56,12 +56,13 @@ HAVING COUNT(ti.t_i_ID) >= 2;
 
 --6--
 -- מחזיר את השם פרטי ושם משפחה של הלקוח ואת מספר הטלפון שלו
--- רק עבור לקוחות שהזמינו סיורים לא משולמים
+-- רק עבור לקוחות שהזמינו 25 סיורים לא משולמים
 SELECT c.c_ID, c.c_first_name, c.c_last_name, c.c_phone
 FROM CUSTOMER c
 JOIN BOOKINGS b ON c.c_ID = b.c_ID
 WHERE b.b_status = FALSE
 GROUP BY c.c_ID, c.c_first_name, c.c_last_name, c.c_phone
+HAVING COUNT(b.b_id) > 25
 ORDER BY c.c_last_name;
 
 --7--
@@ -97,14 +98,15 @@ WHERE g_ID IN (
 );
 --6 ב 
 -- מחזיר את השם פרטי ושם משפחה של הלקוח ואת מספר הטלפון שלו
--- רק עבור לקוחות שהזמינו סיורים לא משולמים
-SELECT c_first_name, c_last_name, c_phone
+-- רק עבור לקוחות שהזמינו 25 סיורים לא משולמים
+SELECT c.c_first_name, c.c_last_name, c.c_phone
 FROM CUSTOMER c
-WHERE EXISTS (
-    SELECT 1 
-    FROM BOOKINGS b 
-    WHERE b.c_ID = c.c_ID AND b.b_status = 0
-);
+WHERE (
+    SELECT COUNT(*)
+    FROM BOOKINGS b
+    WHERE b.c_ID = c.c_ID AND b.b_status = FALSE
+) > 25
+ORDER BY c_last_name;
 
 --7 ב 
 -- מחזיר את מספר הסיורים שהתקיימו בחודשים 6 ו7 בשנת 2026
