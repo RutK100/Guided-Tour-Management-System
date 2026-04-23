@@ -111,7 +111,7 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 ![succeeded backup from pgAdmin (UI)](DBProject_214994642_326081148/phaseA/images/backup_pgAdmin2.png)
 ![creating backup from CLI](DBProject_214994642_326081148/phaseA/images/backup_cli3.png)
 
-##Phase 2: Integration
+## Phase 2: Integration
 
 
 
