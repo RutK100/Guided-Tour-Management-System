@@ -124,6 +124,7 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 Description: This query identifies guides who specialize in hiking. it returns the guide's full name and the number of hiking tours they have led, filtering only for those who led more than 5 tours.
 
 GUI Usage: Displayed in the "Staff Excellence" dashboard to identify veteran hiking guides.
+
 SQL Code:
       
       SELECT g.g_first_name, g.g_last_name, COUNT(ti.t_i_ID) AS hiking_tours_count
