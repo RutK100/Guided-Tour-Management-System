@@ -122,6 +122,7 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 
 ### Query 1: Top Hiking Guides
 Description: This query identifies guides who specialize in hiking. it returns the guide's full name and the number of hiking tours they have led, filtering only for those who led more than 5 tours.
+
 GUI Usage: Displayed in the "Staff Excellence" dashboard to identify veteran hiking guides.
 SQL Code:
       
