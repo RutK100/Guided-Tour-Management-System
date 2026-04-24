@@ -125,6 +125,7 @@ Description: This query identifies guides who specialize in hiking. it returns t
 GUI Usage: Displayed in the "Staff Excellence" dashboard to identify veteran hiking guides.
 SQL Code:
       SELECT g.g_first_name, g.g_last_name, COUNT(ti.t_i_ID) AS hiking_tours_count
+      
       FROM GUIDE g
       JOIN TOURINSTANCE ti ON g.g_ID = ti.g_ID
       JOIN TOUR t ON ti.t_name = t.t_name
