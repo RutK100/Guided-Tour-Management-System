@@ -136,7 +136,11 @@ SQL Code:
 
 🎭Querie 2
 ![Querie 2](/DBProject_214994642_326081148/phaseB/images_B/q2_a.png)
+![Querie 2](/DBProject_214994642_326081148/phaseB/images_B/q2_a_time.png)
+
 ![Querie 2](/DBProject_214994642_326081148/phaseB/images_B/q2_b.png)
+![Querie 2](/DBProject_214994642_326081148/phaseB/images_B/q2_b_time.png)
+
 
 Querie 3
 ![Querie 3](/DBProject_214994642_326081148/phaseB/images_B/)
