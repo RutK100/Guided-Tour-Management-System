@@ -115,3 +115,10 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 
 
 
+# The 8 duplicate queries:
+# 🎭- next to the duplicate queries.
+
+![Querie 1](/DBProject_214994642_326081148/phaseB/images_B/q1.png)
+<img src="/DBProject_214994642_326081148/phaseB/images_B/q1.png" alt="Querie 1" width="400">
+
+
