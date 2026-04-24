@@ -120,12 +120,12 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 ### 🎭- next to the duplicate queries.
 <!--<img src="/DBProject_214994642_326081148/phaseB/images_B/q1.png" alt="Querie 1" width="600"> -->
 
-Query 1: Top Hiking Guides
+### Query 1: Top Hiking Guides
 Description: This query identifies guides who specialize in hiking. it returns the guide's full name and the number of hiking tours they have led, filtering only for those who led more than 5 tours.
 GUI Usage: Displayed in the "Staff Excellence" dashboard to identify veteran hiking guides.
 SQL Code:
-      SELECT g.g_first_name, g.g_last_name, COUNT(ti.t_i_ID) AS hiking_tours_count
       
+      SELECT g.g_first_name, g.g_last_name, COUNT(ti.t_i_ID) AS hiking_tours_count
       FROM GUIDE g
       JOIN TOURINSTANCE ti ON g.g_ID = ti.g_ID
       JOIN TOUR t ON ti.t_name = t.t_name
