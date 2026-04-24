@@ -10,8 +10,9 @@ Rot Kalimi and Shirel Farzam
   - [SQL Scripts](#sql-scripts)  
   - [Data](#data)
   - [Backup](#backup)  
-- [Phase 2: Queries](#phase-2-Queries)  
-## Phase 1: Design and Build the Database  
+- [Phase 2: Queries](#phase-2-Queries)
+
+# Phase 1: Design and Build the Database  
 
 ### Introduction
 SweeTour is an advanced platform designed for planning and managing guided tours, streamlining the connection between tour operators, guides, and customers. The system offers a comprehensive solution for the entire "tour experience"—from building detailed routes with specific time stations and geographic locations, to managing guide assignments and tracking real-time bookings and revenue.  
@@ -111,14 +112,14 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 ![succeeded backup from pgAdmin (UI)](DBProject_214994642_326081148/phaseA/images/backup_pgAdmin2.png)
 ![creating backup from CLI](DBProject_214994642_326081148/phaseA/images/backup_cli3.png)
 
-## Phase 2: Queries
+# Phase 2: Queries
 
 
 
-# The 8 duplicate queries:
-# 🎭- next to the duplicate queries.
+## The 8 duplicate queries:
+### 🎭- next to the duplicate queries.
 
 ![Querie 1](/DBProject_214994642_326081148/phaseB/images_B/q1.png)
-<img src="/DBProject_214994642_326081148/phaseB/images_B/q1.png" alt="Querie 1" width="400">
+<img src="/DBProject_214994642_326081148/phaseB/images_B/q1.png" alt="Querie 1" width="600">
 
 
