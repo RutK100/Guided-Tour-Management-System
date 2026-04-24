@@ -18,6 +18,7 @@ WHERE NOT EXISTS (
 --3--
 -- Target Screen: Guide & School Management
 -- מחיקת מדריכים שהעבירו סיורים לפני יותר משנה
+---------------לשנותתתתתתתתתת
 DELETE FROM GUIDE
 WHERE g_ID IN (
     SELECT g_ID 

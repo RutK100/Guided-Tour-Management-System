@@ -116,10 +116,50 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 
 
 
-## The 8 duplicate queries:
+### The 8 duplicate queries:
 ### 🎭- next to the duplicate queries.
+<!--<img src="/DBProject_214994642_326081148/phaseB/images_B/q1.png" alt="Querie 1" width="600"> -->
 
+Query 1: Top Hiking Guides
+Description: This query identifies guides who specialize in hiking. it returns the guide's full name and the number of hiking tours they have led, filtering only for those who led more than 5 tours.
+GUI Usage: Displayed in the "Staff Excellence" dashboard to identify veteran hiking guides.
+SQL Code:
+      SELECT g.g_first_name, g.g_last_name, COUNT(ti.t_i_ID) AS hiking_tours_count
+      FROM GUIDE g
+      JOIN TOURINSTANCE ti ON g.g_ID = ti.g_ID
+      JOIN TOUR t ON ti.t_name = t.t_name
+      WHERE t.t_type = 'Hiking'
+      GROUP BY g.g_ID, g.g_first_name, g.g_last_name
+      HAVING COUNT(ti.t_i_ID) > 5
+      ORDER BY hiking_tours_count DESC;
 ![Querie 1](/DBProject_214994642_326081148/phaseB/images_B/q1.png)
-<img src="/DBProject_214994642_326081148/phaseB/images_B/q1.png" alt="Querie 1" width="600">
+
+🎭Querie 2
+![Querie 2](/DBProject_214994642_326081148/phaseB/images_B/q2_a.png)
+![Querie 2](/DBProject_214994642_326081148/phaseB/images_B/q2_b.png)
+
+Querie 3
+![Querie 3](/DBProject_214994642_326081148/phaseB/images_B/)
+
+Querie 4
+![Querie 4](/DBProject_214994642_326081148/phaseB/images_B/q4.png)
+
+Querie 5
+![Querie 5](/DBProject_214994642_326081148/phaseB/images_B/q5.png)
+
+🎭Querie 6
+![Querie 6](/DBProject_214994642_326081148/phaseB/images_B/q6_a.png)
+![Querie 6](/DBProject_214994642_326081148/phaseB/images_B/q6_b.png)
+
+🎭Querie 7
+![Querie 7](/DBProject_214994642_326081148/phaseB/images_B/q7_a.png)
+![Querie 7](/DBProject_214994642_326081148/phaseB/images_B/q7_b.png)
+
+🎭Querie 8
+![Querie 8](/DBProject_214994642_326081148/phaseB/images_B/q8_a.png)
+![Querie 8](/DBProject_214994642_326081148/phaseB/images_B/q8_b.png)
+
+
+
 
 
