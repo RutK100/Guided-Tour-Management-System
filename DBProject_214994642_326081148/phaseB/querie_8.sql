@@ -66,23 +66,27 @@ HAVING COUNT(b.b_id) > 25
 ORDER BY c.c_last_name;
 
 --7--
--- מחזיר את מספר הסיורים שהתקיימו בחודשים 6 ו7 בשנת 2026
-SELECT EXTRACT(MONTH FROM t_date) AS tour_month, COUNT(*) AS total_instances, 
-g.g_first_name AS guide_name , g.g_phone AS guide_phone
-FROM TOURINSTANCE ti 
+-- מחזיר את המדריכים בסיורים בחודשי הקיץ 
+SELECT EXTRACT(MONTH FROM t_date) AS tour_month, 
+       COUNT(*) AS total_instances,
+       g.g_first_name AS guide_name, 
+       g.g_phone AS guide_phone
+FROM TOURINSTANCE ti
 JOIN GUIDE g ON ti.g_ID = g.g_ID
 WHERE EXTRACT(MONTH FROM t_date) IN (6, 7)
-AND EXTRACT(YEAR FROM t_date) = 2026
-GROUP BY EXTRACT(MONTH FROM t_date);
+  AND EXTRACT(YEAR FROM t_date) = 2026
+GROUP BY EXTRACT(MONTH FROM t_date), g.g_first_name, g.g_phone;
 
---8--
--- מחזיר את שם הלקוח ואת מספר הטלפון שלו
--- רק עבור לקוחות שהזמינו סיורים לא משולמים
-SELECT DISTINCT c.c_ID, c.c_first_name, c.c_last_name, c.c_phone
-FROM CUSTOMER c
-JOIN BOOKINGS b ON c.c_ID = b.c_ID
-WHERE b.b_status = FALSE
-ORDER BY c.c_last_name;
+-- 8 --
+-- מחזיר את שם המדריך ואת סכום המחירים של כל הסיורים שהוא העביר
+-- רק עבור מדריכים שהניבו הכנסה מצטברת של מעל 500 ש"ח
+SELECT g.g_first_name, g.g_last_name, SUM(t.price) AS total_revenue
+FROM GUIDE g
+JOIN TOURINSTANCE ti ON g.g_ID = ti.g_ID
+JOIN TOUR t ON ti.t_name = t.t_name
+GROUP BY g.g_ID, g.g_first_name, g.g_last_name
+HAVING SUM(t.price) > 500
+ORDER BY total_revenue DESC;
 
 -- שאילתות פחות יעילות
 -- 2 ב 
@@ -109,23 +113,38 @@ WHERE (
 ORDER BY c_last_name;
 
 --7 ב 
--- מחזיר את מספר הסיורים שהתקיימו בחודשים 6 ו7 בשנת 2026
-SELECT TO_CHAR(t_date, 'Month') AS tour_month, COUNT(*)
-FROM TOURINSTANCE
-WHERE TO_CHAR(t_date, 'MM') = '06' OR TO_CHAR(t_date, 'MM') = '07'
-GROUP BY TO_CHAR(t_date, 'Month');
+-- מחזיר את המדריכים בסיורים בחודשי הקיץ 
+SELECT DISTINCT
+    EXTRACT(MONTH FROM t1.t_date) AS tour_month,
+    (SELECT COUNT(*) 
+     FROM TOURINSTANCE t2 
+     WHERE EXTRACT(MONTH FROM t2.t_date) = EXTRACT(MONTH FROM t1.t_date)
+       AND t2.g_ID = t1.g_ID) AS total_instances,
+    (SELECT g_first_name 
+     FROM GUIDE g 
+     WHERE g.g_ID = t1.g_ID) AS guide_name,
+    (SELECT g_phone 
+     FROM GUIDE g 
+     WHERE g.g_ID = t1.g_ID) AS guide_phone
+FROM TOURINSTANCE t1
+WHERE EXTRACT(MONTH FROM t1.t_date) IN (6, 7)
+  AND EXTRACT(YEAR FROM t1.t_date) = 2026;
 
+-- 8 --
+-- מחזיר את שם המדריך ואת סכום המחירים של כל הסיורים שהוא העביר
+-- רק עבור מדריכים שהניבו הכנסה מצטברת של מעל 500 ש"ח
 
---8 ב 
--- מחזיר את שם הלקוח ואת מספר הטלפון שלו
--- רק עבור לקוחות שהזמינו סיורים לא משולמים
-SELECT g.g_first_name, g.g_last_name, vip_tours.count_tours
+SELECT g.g_first_name, g.g_last_name, 
+       (SELECT SUM(t.price) 
+        FROM TOUR t 
+        JOIN TOURINSTANCE ti ON t.t_name = ti.t_name 
+        WHERE ti.g_ID = g.g_ID) AS total_revenue
 FROM GUIDE g
-JOIN (
-    SELECT ti.g_ID, COUNT(*) AS count_tours
-    FROM TOURINSTANCE ti
-    JOIN TOUR t ON ti.t_name = t.t_name
-    WHERE t.t_level = 5 AND t.price > 100
-    GROUP BY ti.g_ID
-) vip_tours ON g.g_ID = vip_tours.g_ID
-WHERE vip_tours.count_tours >= 2;
+WHERE (SELECT SUM(t.price) 
+       FROM TOUR t 
+       JOIN TOURINSTANCE ti ON t.t_name = ti.t_name 
+       WHERE ti.g_ID = g.g_ID) > 500
+ORDER BY (SELECT SUM(t.price) 
+          FROM TOUR t 
+          JOIN TOURINSTANCE ti ON t.t_name = ti.t_name 
+          WHERE ti.g_ID = g.g_ID) DESC;
