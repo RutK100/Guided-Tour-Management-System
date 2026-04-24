@@ -117,7 +117,7 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 
 
 ### The 8 duplicate queries:
-### 🎭- next to the duplicate queries.
+ 🎭- next to the duplicate queries.
 <!--<img src="/DBProject_214994642_326081148/phaseB/images_B/q1.png" alt="Querie 1" width="600"> -->
 
 ### Query 1: Top Hiking Guides
