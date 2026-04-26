@@ -17,12 +17,11 @@ WHERE NOT EXISTS (
 
 --3--
 -- Target Screen: Guide & School Management
--- מחיקת מדריכים שהעבירו סיורים לפני יותר משנה
----------------לשנותתתתתתתתתת
+-- מחיקת מדריכים שהעבירו פחות מ50 סיורים
 DELETE FROM GUIDE
-WHERE g_ID IN (
-    SELECT g_ID 
+WHERE g_id NOT IN (
+    SELECT DISTINCT g_id 
     FROM TOURINSTANCE 
-    GROUP BY g_ID
-    HAVING MAX(t_date) < CURRENT_DATE - INTERVAL '1' YEAR
+    GROUP BY g_id 
+    HAVING COUNT(*) >= 50
 );
