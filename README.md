@@ -121,9 +121,8 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 <!--<img src="/DBProject_214994642_326081148/phaseB/images_B/q1.png" alt="Querie 1" width="600"> -->
 
 ### Query 1: Top Hiking Guides
-Description: This query identifies guides who specialize in hiking. it returns the guide's full name and the number of hiking tours they have led, filtering only for those who led more than 5 tours.
-
-GUI Usage: Displayed in the "Staff Excellence" dashboard to identify veteran hiking guides.
+מחזיר את השם של המדריך ואת מספר סיורי ההליכה שהוא העביר
+רק עבור מדריכים שהרדיכו יותר מ5 סיורי הליכה
 
 SQL Code:
       
@@ -137,35 +136,231 @@ SQL Code:
       ORDER BY hiking_tours_count DESC;
 ![Querie 1](/DBProject_214994642_326081148/phaseB/images_B/q1.png)
 
-🎭Querie 2
+### 🎭 Query 2: Accessible Tour Guides
+מחזיר את השם פרטי ושם משפחה של המדריך ומספר הטלפון שלו
+רק עבור מדריכים שהעבירו סיורים נגישים
+
+SQL Code:
+      
+    SELECT DISTINCT g.g_first_name, g.g_last_name, g.g_phone
+    FROM GUIDE g
+    JOIN TOURINSTANCE ti ON g.g_ID = ti.g_ID
+    JOIN TOUR t ON ti.t_name = t.t_name
+    WHERE t.accessibility = 1
+    ORDER BY g.g_last_name ASC;
+
+    -- פחות יעילה
+    SELECT g_first_name, g_last_name, g_phone
+    FROM GUIDE
+    WHERE g_ID IN (
+        SELECT ti.g_ID 
+        FROM TOURINSTANCE ti
+        WHERE ti.t_name IN (
+            SELECT t_name FROM TOUR WHERE accessibility = 1
+        )
+    );
+
+
 ![Querie 2](/DBProject_214994642_326081148/phaseB/images_B/q2_a.png)
 ![Querie 2](/DBProject_214994642_326081148/phaseB/images_B/q2_a_time.png)
 
 ![Querie 2](/DBProject_214994642_326081148/phaseB/images_B/q2_b.png)
 ![Querie 2](/DBProject_214994642_326081148/phaseB/images_B/q2_b_time.png)
+בבדיקת זמני הריצה שביצענו, ניכר הבדל משמעותי בין שתי הצורות:
+
+צורה א' (JOIN): זמן ריצה של כ-345ms.
+
+צורה ב' (Nested IN): זמן ריצה של כ-4,859ms (מעל 4 שניות).
+
+מדוע צורה א' (JOIN) יעילה יותר במקרה זה?
+
+אופטימיזציה של ה-Join: בשימוש ב-JOIN, מנוע בסיס הנתונים (Query Optimizer) יכול לתכנן מסלול גישה יעיל שמשלב את הטבלאות במקביל, תוך שימוש באינדקסים על המפתחות הזרים (g_id, t_name).
+
+עלות הקינון: בצורה ב', בסיס הנתונים נדרש לבנות "קבוצות זמניות" (Intermediate result sets) עבור כל רמת קינון. בטבלאות גדולות, הפעולה של בדיקת IN מול רשימה ארוכה שנוצרת בזמן אמת היא הרבה יותר "יקרה" מבחינת משאבי עיבוד מאשר חיבור טבלאות ישיר.
+
+מסקנה: למרות שצורה ב' לעיתים קריאה יותר לאנשים מסוימים, היא איטית משמעותית במקרה של ריבוי נתונים, ולכן נעדיף להשתמש ב-JOIN (צורה א') או ב-EXISTS בייצור
 
 
-Querie 3
-![Querie 3](/DBProject_214994642_326081148/phaseB/images_B/)
+### Querie 3
+מחזיר את השם של הסיור ואת משך הסיור
+רק עבור סיורים שהמשך שלהם הוא 2 שעות לפחות
 
-Querie 4
+SQL Code:
+      
+SELECT t.t_name,
+       EXTRACT(YEAR FROM ti.t_date) AS tour_year,
+       EXTRACT(MONTH FROM ti.t_date) AS tour_month,
+       EXTRACT(DAY FROM ti.t_date) AS tour_day,
+       t.t_duration
+FROM TOUR t
+JOIN TOURINSTANCE ti ON t.t_name = ti.t_name
+WHERE t.t_duration >= 2
+ORDER BY tour_year, tour_month, tour_day;
+
+![Querie 3](/DBProject_214994642_326081148/phaseB/images_B/q3.png)
+
+### Querie 4
+וגם את שם המדריך מחזיר את השם של הסיור ואת שעת ההתחלה והסיום שלו 
+רק עבור סיורים שמתחילים אחרי 18:00 
+
+SQL Code:
+      
+SELECT t_name, start_time, end_time, g.g_first_name, g.g_last_name
+FROM TOURINSTANCE t 
+JOIN GUIDE g ON g.g_ID = ti.g_ID
+WHERE start_time >= '18:00:00'
+ORDER BY start_time ASC;
+
 ![Querie 4](/DBProject_214994642_326081148/phaseB/images_B/q4.png)
 
-Querie 5
+### Querie 5
+מחזיר את השם פרטי ושם משפחה של המדריך ואת מספר הסיורים המקצועיים שהוא העביר
+רק עבור מדריכים שהעבירו יותר מ2 סיורים מקצועיים
+
+SQL Code:
+      
+SELECT g.g_first_name, g.g_last_name, COUNT(ti.t_i_ID) AS professional_tours
+FROM GUIDE g
+JOIN TOURINSTANCE ti ON g.g_ID = ti.g_ID
+JOIN TOUR t ON ti.t_name = t.t_name
+WHERE t.t_level = 5 AND t.price > 100
+GROUP BY g.g_ID, g.g_first_name, g.g_last_name
+HAVING COUNT(ti.t_i_ID) >= 2;
+
 ![Querie 5](/DBProject_214994642_326081148/phaseB/images_B/q5.png)
 
-🎭Querie 6
+### 🎭Querie 6
+מחזיר את השם פרטי ושם משפחה של הלקוח ואת מספר הטלפון שלו
+רק עבור לקוחות שהזמינו 25 סיורים לא משולמים
+
+SQL Code:
+      
+SELECT c.c_ID, c.c_first_name, c.c_last_name, c.c_phone
+FROM CUSTOMER c
+JOIN BOOKINGS b ON c.c_ID = b.c_ID
+WHERE b.b_status = FALSE
+GROUP BY c.c_ID, c.c_first_name, c.c_last_name, c.c_phone
+HAVING COUNT(b.b_id) > 25
+ORDER BY c.c_last_name;
+
+-- פחות יעילה
+SELECT c.c_first_name, c.c_last_name, c.c_phone
+FROM CUSTOMER c
+WHERE (
+    SELECT COUNT(*)
+    FROM BOOKINGS b
+    WHERE b.c_ID = c.c_ID AND b.b_status = FALSE
+) > 25
+ORDER BY c_last_name;
+
+
 ![Querie 6](/DBProject_214994642_326081148/phaseB/images_B/q6_a.png)
 ![Querie 6](/DBProject_214994642_326081148/phaseB/images_B/q6_b.png)
 
-🎭Querie 7
+צורה א' (JOIN): זמן ריצה של 1.73 שניות.
+
+צורה ב' (Subquery): זמן ריצה של 13.3 שניות.
+
+מדוע צורה א' יעילה יותר?
+
+עיבוד קבוצתי: בצורה א', בסיס הנתונים מחבר את הטבלאות פעם אחת ומבצע ספירה מרוכזת על כל הנתונים יחד.
+
+עיבוד שורתי: בצורה ב', בסיס הנתונים נאלץ להריץ את תת-השאילתא מחדש עבור כל שורה ושורה בטבלת הלקוחות. פעולה חוזרת זו גורמת לעיכוב משמעותי ככל שכמות הלקוחות בטבלה גדלה.
+
+מסקנה: צורה א' עדיפה לשימוש במערכת כיוון שהיא מהירה פי כמה ומבצעת חישוב מאוחד במקום חישובים חוזרים.
+
+### 🎭Querie 7
+מחזיר את המדריכים בסיורים בחודשי הקיץ 
+
+SQL Code:
+      
+SELECT EXTRACT(MONTH FROM t_date) AS tour_month, 
+       COUNT(*) AS total_instances,
+       g.g_first_name AS guide_name, 
+       g.g_phone AS guide_phone
+FROM TOURINSTANCE ti
+JOIN GUIDE g ON ti.g_ID = g.g_ID
+WHERE EXTRACT(MONTH FROM t_date) IN (6, 7)
+  AND EXTRACT(YEAR FROM t_date) = 2026
+GROUP BY EXTRACT(MONTH FROM t_date), g.g_first_name, g.g_phone;
+
+-- פחות יעילה
+SELECT DISTINCT
+    EXTRACT(MONTH FROM t1.t_date) AS tour_month,
+    (SELECT COUNT(*) 
+     FROM TOURINSTANCE t2 
+     WHERE EXTRACT(MONTH FROM t2.t_date) = EXTRACT(MONTH FROM t1.t_date)
+       AND t2.g_ID = t1.g_ID) AS total_instances,
+    (SELECT g_first_name 
+     FROM GUIDE g 
+     WHERE g.g_ID = t1.g_ID) AS guide_name,
+    (SELECT g_phone 
+     FROM GUIDE g 
+     WHERE g.g_ID = t1.g_ID) AS guide_phone
+FROM TOURINSTANCE t1
+WHERE EXTRACT(MONTH FROM t1.t_date) IN (6, 7)
+  AND EXTRACT(YEAR FROM t1.t_date) = 2026;
+
+
 ![Querie 7](/DBProject_214994642_326081148/phaseB/images_B/q7_a.png)
 ![Querie 7](/DBProject_214994642_326081148/phaseB/images_B/q7_b.png)
 
-🎭Querie 8
+צורה א' (JOIN + GROUP BY): זמן ריצה של 344ms.
+
+צורה ב' (Scalar Subqueries): זמן ריצה של 5.55 שניות.
+
+מדוע צורה א' יעילה יותר?
+
+מניעת הרצות חוזרות: בצורה א', בסיס הנתונים מבצע חיבור (Join) אחד וסכימה אחת עבור כל הנתונים. בצורה ב', עבור כל שורה בתוצאה, בסיס הנתונים נאלץ להריץ 3 תתי-שאילתות נפרדות (אחת לספירה, אחת לשם ואחת לטלפון).
+
+שימוש ב-Group By: פקודת ה-GROUP BY מאפשרת למנוע ה-SQL לעבד את כל קבוצות הנתונים במעבר אחד יעיל, בעוד שצורה ב' יוצרת עומס חישובי כבד שגדל ככל שיש יותר שורות בטבלה.
+
+מסקנה: צורה א' היא הדרך המומלצת לביצוע חישובים מצטברים, שכן היא מהירה פי 16 מהחלופה המקוננת.
+
+
+### 🎭Querie 8
+מחזיר את שם המדריך ואת סכום המחירים של כל הסיורים שהוא העביר
+רק עבור מדריכים שהניבו הכנסה מצטברת של מעל 500 ש"ח
+
+SQL Code:
+      
+SELECT g.g_first_name, g.g_last_name, SUM(t.price) AS total_revenue
+FROM GUIDE g
+JOIN TOURINSTANCE ti ON g.g_ID = ti.g_ID
+JOIN TOUR t ON ti.t_name = t.t_name
+GROUP BY g.g_ID, g.g_first_name, g.g_last_name
+HAVING SUM(t.price) > 500
+ORDER BY total_revenue DESC;
+
+-- פחות יעילה
+SELECT g.g_first_name, g.g_last_name, 
+       (SELECT SUM(t.price) 
+        FROM TOUR t 
+        JOIN TOURINSTANCE ti ON t.t_name = ti.t_name 
+        WHERE ti.g_ID = g.g_ID) AS total_revenue
+FROM GUIDE g
+WHERE (SELECT SUM(t.price) 
+       FROM TOUR t 
+       JOIN TOURINSTANCE ti ON t.t_name = ti.t_name 
+       WHERE ti.g_ID = g.g_ID) > 500
+ORDER BY (SELECT SUM(t.price) 
+          FROM TOUR t 
+          JOIN TOURINSTANCE ti ON t.t_name = ti.t_name 
+          WHERE ti.g_ID = g.g_ID) DESC;
 ![Querie 8](/DBProject_214994642_326081148/phaseB/images_B/q8_a.png)
 ![Querie 8](/DBProject_214994642_326081148/phaseB/images_B/q8_b.png)
 
+צורה א' (JOIN + GROUP BY): זמן ריצה של 198ms.
+
+צורה ב' (Multiple Subqueries): זמן ריצה של 2.32 שניות.
+
+מדוע צורה א' יעילה משמעותית?
+
+חישוב מאוחד: בצורה א', מנוע ה-SQL מבצע חישוב של הסכום (SUM) פעם אחת לכל קבוצה (מדריך) תוך שימוש ב-Join יעיל.
+
+כפל חישובים: בצורה ב', אותה תת-שאילתא מורכבת מופיעה 3 פעמים (ב-SELECT, ב-WHERE וב-ORDER BY). המשמעות היא שעבור כל שורה בטבלת המדריכים, בסיס הנתונים מריץ את החישוב הכבד 3 פעמים בנפרד.
+
+מסקנה: צורה א' מהירה פי 11 מצורה ב'. שימוש ב-GROUP BY ו-HAVING הוא הסטנדרט המקצועי לביצוע אגרגציות, בעוד שצורה ב' יוצרת עומס מיותר ואיטיות ניכרת.
 
 
 
