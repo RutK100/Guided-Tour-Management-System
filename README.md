@@ -116,7 +116,7 @@ We developed a Python script to handle complex data logic, such as the many-to-m
 
 
 
-### The 8 duplicate queries:
+## SELECT queries:
  🎭- next to the duplicate queries.
 <!--<img src="/DBProject_214994642_326081148/phaseB/images_B/q1.png" alt="Querie 1" width="600"> -->
 
@@ -361,6 +361,102 @@ ORDER BY (SELECT SUM(t.price)
 כפל חישובים: בצורה ב', אותה תת-שאילתא מורכבת מופיעה 3 פעמים (ב-SELECT, ב-WHERE וב-ORDER BY). המשמעות היא שעבור כל שורה בטבלת המדריכים, בסיס הנתונים מריץ את החישוב הכבד 3 פעמים בנפרד.
 
 מסקנה: צורה א' מהירה פי 11 מצורה ב'. שימוש ב-GROUP BY ו-HAVING הוא הסטנדרט המקצועי לביצוע אגרגציות, בעוד שצורה ב' יוצרת עומס מיותר ואיטיות ניכרת.
+
+## DELETE queries:
+
+### Delete querie 1
+![](/DBProject_214994642_326081148/phaseB/images_B/pre_d1.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/pro_d1.png)
+
+
+### Delete querie 2
+![](/DBProject_214994642_326081148/phaseB/images_B/pre_d2.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/pro_d2.png)
+
+
+### Delete querie 3
+![](/DBProject_214994642_326081148/phaseB/images_B/pre_d3.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/pro_d3.png)
+
+## UPDATE queries:
+
+### Update querie 1
+![](/DBProject_214994642_326081148/phaseB/images_B/pre_update1.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/pro_update1.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/pro_update1_data.png)
+
+### Update querie 2
+![](/DBProject_214994642_326081148/phaseB/images_B/pre_update2.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/pro_update2.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/pro_update2_data.png)
+
+
+### Update querie 3
+![](/DBProject_214994642_326081148/phaseB/images_B/pre_update3.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/pro_update3.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/pro_update3_data.png)
+
+
+## ALTER-TABLE
+![](/DBProject_214994642_326081148/phaseB/images_B/alter_table%20.png)
+
+## CONSTRAINS
+### Constrain num 1 
+![](/DBProject_214994642_326081148/phaseB/images_B/constrain1_pre.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/constrain1_pro.png)
+
+### Constrain num 2
+![](/DBProject_214994642_326081148/phaseB/images_B/constrain2_pre.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/constrain2_pro.png)
+
+### Constrain num 3
+![](/DBProject_214994642_326081148/phaseB/images_B/constrain3_pre.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/constrain3_pro.png)
+
+
+
+
+
+## COMMIT
+![](/DBProject_214994642_326081148/phaseB/images_B/commit1.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/commit2.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/commit3.png)
+
+## ROLLBACK
+![](/DBProject_214994642_326081148/phaseB/images_B/rollback1.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/rollback2.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/rollback3.png)
+
+## INDEX
+### Index num 1
+
+![](/DBProject_214994642_326081148/phaseB/images_B/index1_pre.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/index1.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/index1_pro.png)
+
+### Index num 2
+
+![](/DBProject_214994642_326081148/phaseB/images_B/index2_pre.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/index2.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/index2_pro.png)
+
+### Index num 3
+
+![](/DBProject_214994642_326081148/phaseB/images_B/index3_pre.png)
+![](/DBProject_214994642_326081148/phaseB/images_B/index3_pro.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
