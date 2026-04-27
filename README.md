@@ -52,11 +52,6 @@ A folder containing images from our system built on the site.
 ![](DBProject_214994642_326081148/phaseA/images/fromApp%20(9).png)
 
 
-
-
-
-
-
 ###  ERD (Entity-Relationship Diagram)    
 ![ERD Diagram](DBProject_214994642_326081148/phaseA/ERD_image.png)
 
