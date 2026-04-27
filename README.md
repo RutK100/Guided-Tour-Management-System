@@ -387,85 +387,310 @@ ORDER BY (SELECT SUM(t.price)
 ## DELETE queries:
 
 ### Delete querie 1
+ניקוי הזמנות ישנות שלא אושרו
+תיאור: השאילתא מיועדת לביצוע "תחזוקה" בבסיס הנתונים. היא מוחקת מטבלת ההזמנות (bookings) את כל הרשומות שבוצעו לפני שנת 2026 ושהסטטוס שלהן הוא FALSE (כלומר, הזמנות שבוטלו או לא אושרו). פעולה זו עוזרת לשמור על בסיס נתונים רלוונטי ומשפרת את מהירות השליפה.
+
+קוד השאילתא:
+
+      SQL
+      DELETE FROM bookings
+      WHERE b_status = FALSE
+      AND EXTRACT(YEAR FROM b_date) < 2026;
+
+
+בצילום המסך הראשון ניתן לראות כי קיימות 14,282 שורות העונות על תנאי התאריך (לפני שנת 2026), הכוללות הזמנות מאושרות ולא מאושרות.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pre_d1.png)
+
+
+לאחר הרצת הפקודה, ניתן לראות בתוצאת השאילתא השנייה שנותרו רק 7,131 שורות (אלו שהן בסטטוס TRUE). כלומר, נמחקו בהצלחה כל ההזמנות הישנות שהיו בסטטוס FALSE.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pro_d1.png)
 
 
 ### Delete querie 2
+שאילתת מחיקה 2: מחיקת מופעי סיור ללא הזמנות
+תיאור השאילתא: מחיקה של כל מופעי הסיור (tourinstance) שאין להם אף הזמנה משויכת בטבלת ה-bookings. השאילתא משתמשת בתנאי NOT EXISTS כדי לזהות מופעים "ריקים" ולייעל את מסד הנתונים.
+
+קוד השאילתא:
+
+  SQL
+  DELETE FROM tourinstance ti1
+  WHERE NOT EXISTS (
+      SELECT 1 
+      FROM bookings b 
+      WHERE b.t_i_id = ti1.t_i_id
+  );
+
+בצילום המסך הראשון ניתן לראות כי קיימים מופעי סיור רבים עם 0 הזמנות (total_bookings = 0).
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pre_d2.png)
+
+לאחר ביצוע המחיקה והרצת שאילתת הבדיקה (צילום מסך שני), ניתן לראות שנותרו רק מופעי סיור שיש להם לפחות הזמנה אחת (מספרי ההזמנות גדולים מ-0). כל המופעים הריקים הוסרו.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pro_d2.png)
 
 
 ### Delete querie 3
+תיאור השאילתא: מחיקת מדריכים שביצעו פחות מ-50 מופעי סיור בסך הכל. המחיקה מתבצעת בצורה מדורגת (קודם מהטבלאות המקושרות BOOKINGS ו- TOURINSTANCE ולאחר מכן מטבלת GUIDE) כדי לשמור על שלמות הנתונים (Referential Integrity).
+
+    קוד השאילתא:
+
+      SQL
+      DELETE FROM BOOKINGS WHERE t_i_id IN (
+          SELECT t_i_id FROM TOURINSTANCE WHERE g_id IN (
+              SELECT g_id FROM TOURINSTANCE GROUP BY g_id HAVING COUNT(*) < 50
+          )
+      );
+
+    DELETE FROM TOURINSTANCE WHERE g_id IN (
+        SELECT g_id FROM TOURINSTANCE GROUP BY g_id HAVING COUNT(*) < 50
+    );
+
+    DELETE FROM GUIDE WHERE g_id IN (...);
+
+    בצילום המסך הראשון ניתן לראות רשימת מדריכים שערכו פחות מ-50 סיורים (לדוגמה: 44, 38, 40 וכו').
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pre_d3.png)
+לאחר הרצת פקודות המחיקה, המדריכים הללו וכל הרשומות המקושרות אליהם הוסרו מהמערכת, כפי שניתן לראות באישור ההרצה בצילום המסך השני.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pro_d3.png)
 
 ## UPDATE queries:
 
 ### Update querie 1
+תיאור השאילתא: עדכון העמודה t_duration בטבלת הסיורים (TOUR) על סמך חישוב הממוצע של משך הזמן בפועל מתוך טבלת מופעי הסיור (TOURINSTANCE). השאילתא מחשבת את ההפרש בין שעת הסיום לשעת ההתחלה וממירה אותו לשעות.
+
+קוד השאילתא:
+
+    SQL
+    UPDATE TOUR t
+    SET t_duration = (
+        SELECT AVG(EXTRACT(EPOCH FROM (ti.end_time - ti.start_time)) / 3600)
+        FROM TOURINSTANCE ti
+        WHERE ti.t_name = t.t_name
+    )
+    WHERE t.t_name IN (SELECT t_name FROM TOURINSTANCE);
+
+בצילום המסך הראשון ניתן לראות כי העמודה t_duration בטבלת ה-tour מכילה ערכי [null].
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pre_update1.png)
+
+
+לאחר הרצת השאילתא, ניתן לראות בצילום המסך השלישי שהעמודה t_duration התעדכנה בערכים מספריים המייצגים את משך הסיור הממוצע (למשל: 4, 3, 2).
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pro_update1.png)
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pro_update1_data.png)
 
 ### Update querie 2
+תיאור השאילתא: עדכון העמודה total_price בטבלת ההזמנות (bookings). המחיר מחושב על ידי הכפלת כמות המשתתפים בהזמנה (amount_pepole) במחיר ליחיד של הסיור הרלוונטי, שנשלף באמצעות חיבור לטבלאות TOURINSTANCE ו-TOUR.
+
+קוד השאילתא:
+
+    SQL
+    UPDATE BOOKINGS b
+    SET total_price = b.amount_pepole * t.price
+    FROM TOURINSTANCE ti
+    JOIN TOUR t ON ti.t_name = t.t_name
+    WHERE b.t_i_id = ti.t_i_id;
+
+בצילום המסך הראשון ניתן לראות כי העמודה total_price בטבלת ה-bookings מכילה ערכי [null].
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pre_update2.png)
+
+לאחר הרצת השאילתא, ניתן לראות בצילום המסך השלישי שהעמודה total_price התעדכנה בערכים מספריים המייצגים את סכום המחירים של כל הסיורים שהוא העביר.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pro_update2.png)
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pro_update2_data.png)
 
 
 ### Update querie 3
+תיאור השאילתא: עדכון מחירי הסיורים בתוספת של 10% עבור סיורים המוגדרים ברמת קושי גבוהה (מעל רמה 2). השאילתא משתמשת בתת-שאילתא כדי לזהות את הסיורים הרלוונטיים מתוך טבלת TOUR ולעדכן את מחירם בהתאם.
+
+קוד השאילתא:
+
+    SQL
+    UPDATE TOUR t
+    SET price = price * 1.1
+    WHERE t.t_name IN (
+        SELECT t_name 
+        FROM TOUR 
+        WHERE t_level > 2
+    );
+
+בצילום המסך העליון ניתן לראות את המחירים המקוריים. לדוגמה, סיור "Abstract Adventures" (רמה 3) שמחירו 194 וסיור "Aerial Adventures" (רמה 1) שמחירו 275.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pre_update3.png)
+
+בצילום המסך התחתון ניתן לראות שהמחיר של "Abstract Adventures" התעדכן ל-213 (עלייה של 10%), בעוד שמחירו של סיור "Aerial Adventures" נותר ללא שינוי (275) כיוון שרמת הקושי שלו אינה עומדת בתנאי.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/pro_update3.png)
 ![](/DBProject_214994642_326081148/phaseB/images_B/pro_update3_data.png)
 
 
 ## ALTER-TABLE
+תיאור: במהלך כתיבת השאילתות עלה צורך בהוספת עמודות חדשות לטבלאות קיימות כדי לשמור נתונים מחושבים שנדרשו למערכת (כמו מחיר סופי ומשך זמן סיור). הפקודות בוצעו על מנת לתמוך בלוגיקה של שאילתות העדכון.
+
+קוד הפקודות:
+
+    SQL
+    ALTER TABLE BOOKINGS ADD total_price DECIMAL(10, 2);
+    ALTER TABLE TOUR ADD t_duration INT;
+
+פירוט השינוי:
+
+טבלת BOOKINGS: נוספה עמודה בשם total_price מטיפוס DECIMAL לשמירת המחיר הכולל של כל הזמנה.
+
+טבלת TOUR: נוספה עמודה בשם t_duration מטיפוס INT לשמירת משך הזמן הממוצע המחושב של הסיור.
+
+בצילום המסך ניתן לראות את הצלחת הרצת הפקודות בשרת.
 ![](/DBProject_214994642_326081148/phaseB/images_B/alter_table%20.png)
 
 ## CONSTRAINS
 ### Constrain num 1 
+תיאור האילוץ: הוספת אילוץ מסוג CHECK על טבלת BOOKINGS המבטיח כי הערך בעמודת amount_pepole (כמות משתתפים) יהיה תמיד גדול או שווה ל-0. אילוץ זה מונע טעויות לוגיות של הזנת מספר משתתפים שלילי.
+
+קוד הפקודה:
+
+    SQL
+    ALTER TABLE BOOKINGS
+    ADD CONSTRAINT chk_people_positive
+    CHECK (amount_pepole >= 0);
+
+ניסיון הפרת האילוץ (בדיקת שגיאה):
+בצילום המסך השני ניתן לראות ניסיון להכניס שורה חדשה עם ערך שלילי (-5) בעמודת המשתתפים.
+
+התוצאה: בסיס הנתונים חסם את הפעולה והחזיר שגיאה:
+ERROR: new row for relation "bookings" violates check constraint "chk_people_positive"
+
+מסקנה: האילוץ פעיל ושומר על תקינות הנתונים.
+
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/constrain1_pre.png)
 ![](/DBProject_214994642_326081148/phaseB/images_B/constrain1_pro.png)
 
 ### Constrain num 2
+אילוץ 2: תקינות זמני סיור
+תיאור האילוץ: הוספת אילוץ מסוג CHECK על טבלת TOURINSTANCE המבטיח שזמן סיום הסיור (end_time) יהיה תמיד מאוחר יותר מזמן תחילת הסיור (start_time). לפני הוספת האילוץ בוצע ניקוי נתונים כדי לוודא שאין חריגות קיימות.
+
+קוד הפקודה:
+
+    SQL
+    ALTER TABLE TOURINSTANCE
+    ADD CONSTRAINT chk_tour_times
+    CHECK (end_time > start_time);
+
+ניסיון הפרת האילוץ (בדיקת שגיאה):
+בצילום המסך השני בוצע ניסיון להזין סיור שמתחיל בשעה 14:00 ומסתיים בשעה 12:00 (זמן סיום לפני זמן התחלה).
+
+התוצאה: בסיס הנתונים חסם את הפעולה והציג את השגיאה:
+ERROR: new row for relation "tourinstance" violates check constraint "chk_tour_times"
+
+מסקנה: האילוץ מונע בהצלחה הזנת זמנים שאינם הגיוניים.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/constrain2_pre.png)
 ![](/DBProject_214994642_326081148/phaseB/images_B/constrain2_pro.png)
 
 ### Constrain num 3
+תיאור האילוץ: הוספת אילוץ מסוג UNIQUE לעמודת מספר הטלפון (g_phone) בטבלת המדריכים (GUIDE). אילוץ זה מבטיח שכל מספר טלפון במערכת יהיה ייחודי ולא ניתן יהיה להזין שני מדריכים שונים עם אותו מספר ליצירת קשר.
+
+קוד הפקודה:
+
+    SQL
+    ALTER TABLE GUIDE
+    ADD CONSTRAINT uni_guide_phone
+    UNIQUE (g_phone);
+ניסיון הפרת האילוץ (בדיקת שגיאה):
+בצילום המסך השני בוצע ניסיון להזין שני מדריכים שונים עם אותו מספר טלפון בדיוק (474-232-5070).
+
+התוצאה: בסיס הנתונים חסם את הפעולה והחזיר שגיאת כפילות:
+ERROR: duplicate key value violates unique constraint "uni_guide_phone"
+
+מסקנה: האילוץ פועל כראוי ומונע כפילות בפרטי הקשר של המדריכים במערכת.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/constrain3_pre.png)
 ![](/DBProject_214994642_326081148/phaseB/images_B/constrain3_pro.png)
 
 
 
 
-
 ## COMMIT
+תיאור: ביצוע עדכון נתונים ושמירתם באופן קבוע בבסיס הנתונים.
+מצב התחלתי: שליפת נתונים מטבלת BOOKINGS כדי לראות את המחירים המקוריים.
 ![](/DBProject_214994642_326081148/phaseB/images_B/commit1.png)
+ביצוע העדכון: פתיחת טרנזקציה (BEGIN) וביצוע פקודת UPDATE. בצילום האמצעי ניתן לראות שהערכים השתנו זמנית.
 ![](/DBProject_214994642_326081148/phaseB/images_B/commit2.png)
+אישור השינויים: הרצת פקודת COMMIT; לשמירה קבועה.
 ![](/DBProject_214994642_326081148/phaseB/images_B/commit3.png)
+מצב סופי: שליפה לאחר ה-Commit מראה שהערכים המעודכנים נשמרו בבסיס הנתונים.
+
 
 ## ROLLBACK
+תיאור: ביצוע עדכון מורכב וביטולו כדי להחזיר את בסיס הנתונים למצבו המקורי.
+מצב התחלתי: שליפת נתונים מטבלת BOOKINGS כדי לראות את המחירים המקוריים.
 ![](/DBProject_214994642_326081148/phaseB/images_B/rollback1.png)
+ביצוע העדכון: פתיחת טרנזקציה (BEGIN) וביצוע פקודת UPDATE. בצילום האמצעי ניתן לראות שהערכים השתנו זמנית.
 ![](/DBProject_214994642_326081148/phaseB/images_B/rollback2.png)
+ביטול השינויים: הרצת פקודת ROLLBACK; להחזרת המצב הקודם.
 ![](/DBProject_214994642_326081148/phaseB/images_B/rollback3.png)
+מצב סופי: שליפה לאחר ה-Rollback מראה שהערכים חזרו למצבם המקורי.
+
 
 ## INDEX
 ### Index num 1
 
+אינדקס 1: אופטימיזציה של שליפת סיורים לפי תאריך
+מוטיבציה ותועלת: שליפת סיורים לפי טווח תאריכים היא פעולה נפוצה מאוד במערכת (למשל עבור מסך "לוח סיורים חודשי"). יצירת אינדקס על עמודת התאריך מאפשרת לבסיס הנתונים לאתר את הטווח המבוקש במהירות מבלי לסרוק את כל הטבלה.
+
+פקודת יצירת האינדקס:
+
+    SQL
+    CREATE INDEX idx_tour_date ON TOURINSTANCE(t_date);
+
+זמן ריצה לפני אינדקס: 599ms.
 ![](/DBProject_214994642_326081148/phaseB/images_B/index1_pre.png)
 ![](/DBProject_214994642_326081148/phaseB/images_B/index1.png)
+זמן ריצה אחרי אינדקס: 184ms.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/index1_pro.png)
 
+הסבר לתוצאות: ניתן לראות שיפור משמעותי במהירות השליפה (קיצור זמן הריצה ביותר מ-60%). האינדקס מאפשר למנוע ה-SQL לגשת ישירות לרשומות הרלוונטיות בטווח התאריכים המבוקש במקום לבצע סריקה מלאה של הטבלה (Full Table Scan).
 ### Index num 2
+
+אופטימיזציה של חיפוש הזמנות לפי סטטוס ולקוח
+מוטיבציה ותועלת: השאילתא מחפשת הזמנות מאושרות עבור לקוח ספציפי, פעולה הנדרשת עבור מסכי "היסטוריית הזמנות" בממשק המשתמש. יצירת אינדקס משולב (Composite Index) על שתי העמודות מאפשרת סינון מהיר ומדויק.
+פקודת יצירת האינדקס:
+
+    SQL
+    CREATE INDEX idx_bookings_status_customer ON BOOKINGS(b_status, c_id);
+
+זמן ריצה לפני אינדקס: 253ms.
+
 
 ![](/DBProject_214994642_326081148/phaseB/images_B/index2_pre.png)
 ![](/DBProject_214994642_326081148/phaseB/images_B/index2.png)
+זמן ריצה אחרי אינדקס: 146ms.
 ![](/DBProject_214994642_326081148/phaseB/images_B/index2_pro.png)
+הסבר לתוצאות: חל שיפור ניכר בזמן הריצה. האינדקס המשולב מאפשר למסד הנתונים לצמצם את מרחב החיפוש בבת אחת לפי שני הקריטריונים (סטטוס ולקוח), מה שמונע סריקה של רשומות שאינן עומדות בתנאי ה-WHERE.
 
 ### Index num 3
 
+אינדקס 3: אופטימיזציה של סינון ומיון סיורים לפי רמת קושי ומחיר
+מוטיבציה ותועלת: ייעול שליפה של סיורים המוגדרים ברמה ספציפית ומיונם לפי מחיר. אינדקס משולב זה תומך ישירות הן בתנאי ה-WHERE והן ב-ORDER BY, מה שמאפשר למערכת להציג למשתמש תוצאות ממוינות במהירות ללא צורך בעיבוד נוסף.
+
+פקודת יצירת האינדקס:
+
+    SQL
+    CREATE INDEX idx_tour_level_price ON TOUR(t_level ASC, price DESC);
+
+זמן ריצה לפני אינדקס: 174ms.
+
 ![](/DBProject_214994642_326081148/phaseB/images_B/index3_pre.png)
+זמן ריצה אחרי אינדקס: 142ms.
 ![](/DBProject_214994642_326081148/phaseB/images_B/index3_pro.png)
+הסבר לתוצאות: זמן הריצה התקצר משום שבסיס הנתונים משתמש באינדקס כדי למצוא את הרשומות הרלוונטיות כשהן כבר ממוינות מראש. פעולה זו חוסכת את עלות המיון (Sort) בזיכרון לאחר שליפת הנתונים, ומאפשרת הצגת תוצאות מהירה יותר.
 
 
 
