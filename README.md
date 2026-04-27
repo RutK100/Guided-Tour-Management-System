@@ -34,6 +34,21 @@ Operational Staff can use the system for record-keeping of tour executions, sche
 ### images-from-the-site
 A folder containing images from our system built on the site.
 [Click here to view the images](DBProject_214994642_326081148/phaseA/images)
+![](DBProject_214994642_326081148/phaseA/images/fromApp%20(1).png)
+![](DBProject_214994642_326081148/phaseA/images/fromApp%20(2).png)
+![](DBProject_214994642_326081148/phaseA/images/fromApp%20(3).png)
+![](DBProject_214994642_326081148/phaseA/images/fromApp%20(4).png)
+![](DBProject_214994642_326081148/phaseA/images/fromApp%20(5).png)
+![](DBProject_214994642_326081148/phaseA/images/fromApp%20(6).png)
+![](DBProject_214994642_326081148/phaseA/images/fromApp%20(7).png)
+![](DBProject_214994642_326081148/phaseA/images/fromApp%20(8).png)
+![](DBProject_214994642_326081148/phaseA/images/fromApp%20(9).png)
+
+
+
+
+
+
 
 ###  ERD (Entity-Relationship Diagram)    
 ![ERD Diagram](DBProject_214994642_326081148/phaseA/ERD_image.png)
