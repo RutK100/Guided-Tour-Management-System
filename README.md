@@ -34,21 +34,37 @@ Operational Staff can use the system for record-keeping of tour executions, sche
 ### images-from-the-site
 A folder containing images from our system built on the site.
 [Click here to view the images](DBProject_214994642_326081148/phaseA/images)
+
 תיאור פרטי תחנה
+
 ![](DBProject_214994642_326081148/phaseA/images/fromApp%20(1).png)
+
 פרטי מופע סיור 
+
 ![](DBProject_214994642_326081148/phaseA/images/fromApp%20(2).png)
+
 פרטי סיור כללי
+
 ![](DBProject_214994642_326081148/phaseA/images/fromApp%20(3).png)
+
 נראות הדשבורד- מסך כללי
+
 ![](DBProject_214994642_326081148/phaseA/images/fromApp%20(4).png)
-רשימת ההזמנות 
+
+רשימת ההזמנות
+
 ![](DBProject_214994642_326081148/phaseA/images/fromApp%20(6).png)
+
 רשימת מדריכים
+
 ![](DBProject_214994642_326081148/phaseA/images/fromApp%20(7).png)
+
 רישום לקוח
+
 ![](DBProject_214994642_326081148/phaseA/images/fromApp%20(8).png)
+
 הזמנה חדשה של סיור
+
 ![](DBProject_214994642_326081148/phaseA/images/fromApp%20(9).png)
 
 
