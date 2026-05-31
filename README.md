@@ -1,6 +1,6 @@
 # Guided-Tour-Management-System
 🌍 SweeTour - Tour management system
-Rot Kalimi and Shirel Farzam
+Rut Kalimi and Shirel Farzam
 ## Table of Contents  
 - [Phase 1: Design and Build the Database](#phase-1-design-and-build-the-database)  
   - [Introduction](#introduction)
@@ -11,6 +11,8 @@ Rot Kalimi and Shirel Farzam
   - [Data](#data)
   - [Backup](#backup)  
 - [Phase 2: Queries](#phase-2-Queries)
+- [Phase 3: Integrates](#phase-2-Queries)
+
 
 # Phase 1: Design and Build the Database  
 
