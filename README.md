@@ -11,7 +11,7 @@ Rut Kalimi and Shirel Farzam
   - [Data](#data)
   - [Backup](#backup)  
 - [Phase 2: Queries](#phase-2-Queries)
-- [Phase 3: Integrates](#phase-2-Queries)
+- [Phase 3: Integrates](#phase-3-Integrates)
 
 
 # Phase 1: Design and Build the Database  
@@ -706,7 +706,8 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 הסבר לתוצאות: זמן הריצה התקצר משום שבסיס הנתונים משתמש באינדקס כדי למצוא את הרשומות הרלוונטיות כשהן כבר ממוינות מראש. פעולה זו חוסכת את עלות המיון (Sort) בזיכרון לאחר שליפת הנתונים, ומאפשרת הצגת תוצאות מהירה יותר.
 
 
-
+#phase-3-Integrates
+![](/DBProject_214994642_326081148/phaseC/)
 
 
 
