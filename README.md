@@ -739,9 +739,9 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 ![](/DBProject_214994642_326081148/phaseC/DSD.png)
 ### קישור לתרשימי המערכת המאוחדת :
-**[View ERD_integration.erdplus](/DBProject_214994642_326081148/phaseC/ERD_integration.erdplus))**
+**[View ERD_integration.erdplus](/DBProject_214994642_326081148/phaseC/ERD_integration.erdplus)**
 
-**[View DSD_integration.erdplus](/DBProject_214994642_326081148/phaseC/DSD_integration.erdplus))**
+**[View DSD_integration.erdplus](/DBProject_214994642_326081148/phaseC/DSD_integration.erdplus)**
 
 
 ### כל הפקודות לשינוי למערכת המשולבת:
