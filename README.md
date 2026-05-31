@@ -725,28 +725,36 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 
-תרשימי האגף החדש- מערכת מדריכי הטיולים (גילת ושיראל)###
+### תרשימי האגף החדש- מערכת מדריכי הטיולים (גילת ושיראל)
+
 ![](/DBProject_214994642_326081148/phaseC/another_system_Guides/erdplus.png)
 ![](/DBProject_214994642_326081148/phaseC/another_system_Guides/DSD.png)
-קישור לתרשים:
-**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/another_system_Guides/GuideSystem.erdplus))**
 
-תרשימים של המערכת המאוחדת###
+
+**[צפייה בקובץ הדיאגרמה ](/DBProject_214994642_326081148/phaseC/another_system_Guides/GuideSystem.erdplus))**
+### תרשימים של המערכת המאוחדת
 ![](/DBProject_214994642_326081148/phaseC/ERD.png)
+
 ![](/DBProject_214994642_326081148/phaseC/DSD.png)
-קישור לתרשימים:
+### קישור לתרשימי המערכת המאוחדת :
 **[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/ERD_integration.erdplus))**
+
 **[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/DSD_integration.erdplus))**
 
 
-כל הפקודות לשינוי למערכת משולבת:##
+### כל הפקודות לשינוי למערכת המשולבת:
+
 **[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/integration.sql))**
-כל 16 השאילתות של שתי המערכות ב"ה:##
+
+### כל 16 השאילתות של שתי המערכות:
 **[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/ALLQUERIES.sql))**
-קובץ הviews: :##
+
+### קובץ הviwes: 
 **[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/Views.sql))**
-גיבוי שלב 3:##
+
+### גיבוי שלב שלישי ב"ה:
 **[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/backup3.sql))**
+
 
 
 
