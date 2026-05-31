@@ -725,11 +725,28 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 
-תרשימי האגף החדש- מערכת מדריכי הטיולים (גילת ושיראל)
+תרשימי האגף החדש- מערכת מדריכי הטיולים (גילת ושיראל)###
 ![](/DBProject_214994642_326081148/phaseC/another_system_Guides/erdplus.png)
 ![](/DBProject_214994642_326081148/phaseC/another_system_Guides/DSD.png)
-![](/DBProject_214994642_326081148/phaseC/another_system_Guides/GuideSystem.erdplus)
+קישור לתרשים:
+**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/another_system_Guides/GuideSystem.erdplus))**
 
+תרשימים של המערכת המאוחדת###
+![](/DBProject_214994642_326081148/phaseC/ERD.png)
+![](/DBProject_214994642_326081148/phaseC/DSD.png)
+קישור לתרשימים:
+**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/ERD_integration.erdplus))**
+**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/DSD_integration.erdplus))**
+
+
+כל הפקודות לשינוי למערכת משולבת:##
+**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/integration.sql))**
+כל 16 השאילתות של שתי המערכות ב"ה:##
+**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/ALLQUERIES.sql))**
+קובץ הviews: :##
+**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/Views.sql))**
+גיבוי שלב 3:##
+**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/backup3.sql))**
 
 
 
