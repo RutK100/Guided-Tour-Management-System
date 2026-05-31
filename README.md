@@ -707,9 +707,10 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 # phase-3-Integrates
-תרשימי האגף החדש- מערכת מדריכי הטיולים (גילת ושיראל) 
+תרשימי האגף החדש- מערכת מדריכי הטיולים (גילת ושיראל)
+![](/DBProject_214994642_326081148/phaseC/another_system_Guides/erdplus.png)
 ![](/DBProject_214994642_326081148/phaseC/another_system_Guides/DSD.png)
-![](/DBProject_214994642_326081148/phaseC/DSD.png)
+![](/DBProject_214994642_326081148/phaseC/another_system_Guides/GuideSystem.erdplus)
 
 
 
