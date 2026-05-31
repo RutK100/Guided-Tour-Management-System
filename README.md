@@ -744,16 +744,16 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 ### כל הפקודות לשינוי למערכת המשולבת:
 
-**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/integration.sql))**
+**[View integration.sql](/DBProject_214994642_326081148/phaseC/integration.sql))**
 
 ### כל 16 השאילתות של שתי המערכות:
-**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/ALLQUERIES.sql))**
+**[View ALLQUERIES.sql](/DBProject_214994642_326081148/phaseC/ALLQUERIES.sql))**
 
 ### קובץ הviwes: 
-**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/Views.sql))**
+**[View Views.sql](/DBProject_214994642_326081148/phaseC/Views.sql))**
 
 ### גיבוי שלב שלישי ב"ה:
-**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/backup3.sql))**
+**[View backup3.sql](/DBProject_214994642_326081148/phaseC/backup3.sql))**
 
 
 
