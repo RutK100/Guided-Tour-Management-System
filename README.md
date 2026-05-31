@@ -731,15 +731,17 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 ![](/DBProject_214994642_326081148/phaseC/another_system_Guides/DSD.png)
 
 
-**[צפייה בקובץ הדיאגרמה ](/DBProject_214994642_326081148/phaseC/another_system_Guides/GuideSystem.erdplus))**
+**[צפייה בקובץ הדיאגרמה] (/DBProject_214994642_326081148/phaseC/another_system_Guides/GuideSystem.erdplus))**
+
+
 ### תרשימים של המערכת המאוחדת
 ![](/DBProject_214994642_326081148/phaseC/ERD.png)
 
 ![](/DBProject_214994642_326081148/phaseC/DSD.png)
 ### קישור לתרשימי המערכת המאוחדת :
-**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/ERD_integration.erdplus))**
+**[View ERD_integration.erdplus](/DBProject_214994642_326081148/phaseC/ERD_integration.erdplus))**
 
-**[View GuideSystem.erdplus](/DBProject_214994642_326081148/phaseC/DSD_integration.erdplus))**
+**[View DSD_integration.erdplus](/DBProject_214994642_326081148/phaseC/DSD_integration.erdplus))**
 
 
 ### כל הפקודות לשינוי למערכת המשולבת:
