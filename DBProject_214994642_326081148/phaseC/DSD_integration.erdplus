@@ -1,0 +1,1066 @@
+{
+  "diagramType": 2,
+  "data": {
+    "nodes": [
+      {
+        "id": "8ebb3f5a-11e8-4094-a3d8-940589e0717a",
+        "type": "Table",
+        "position": {
+          "x": 1549.8049634600334,
+          "y": 52.423670448311185
+        },
+        "data": {
+          "label": "GUIDE",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "a24ef061-d6d7-4e7c-a546-1cdd81c46886",
+              "name": "GuideID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "13ecf7d5-ca88-4c43-bcae-c3e7d1e4569d",
+              "name": "FirstName",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "57528671-ddc4-4a74-b8b7-88a7553f74c7",
+              "name": "LastName",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "872631d8-e99d-4017-b86f-47076b5fb026",
+              "name": "Phone",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "15f4fd5c-bca5-49f2-bba8-f670f419b13f",
+              "name": "Email",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "bfef2dee-fd74-40ea-899b-ada683a366dc",
+              "name": "BirthDate",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "1283ee26-4746-4e17-bf9a-18394d60a026",
+              "name": "JoinDate",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "a5595626-afde-4559-a665-62a24b506b4e",
+              "name": "DailyRate",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "6365251b-9599-42e8-b784-8e7e1acbbe2a",
+              "name": "ExperienceYears",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "82ca8aa1-4017-4589-907e-0570b147d351",
+              "name": "Rating",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "f162f4a4-a062-4788-8f3e-a5d47b7b3cdb",
+              "name": "Address",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "a54aca74-b48e-4bdd-8d5c-b0124b4e787c",
+              "name": "Notes",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 321
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "a33e470e-2251-48cd-9f6d-588a4b9eb52e",
+        "type": "Table",
+        "position": {
+          "x": 1202.8789521647063,
+          "y": 48.64430259148628
+        },
+        "data": {
+          "label": "GUIDEDTOUR",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "d9e602cc-d633-425d-b274-67f90b9cfd58",
+              "name": "StartDate",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "01d84d25-8c60-46e1-b660-a8a4c8a762aa",
+              "name": "EndDate",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "e10129df-d0a3-4378-9a57-db3dd4aedc1b",
+              "name": "StartTime",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "dcec0ec0-18f9-48a1-89d8-f7f981857f07",
+              "name": "EndTime",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "31d03d3c-c22a-49b3-8469-2f5e287aa711",
+              "name": "MeetingPoint",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "75f01d12-ab13-4de8-87c6-5957d9e34a0f",
+              "name": "Price",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "932499b9-f1c0-4c89-a1d0-080883c5d434",
+              "name": "MaxParticipents",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "dc76d10a-fdbd-4425-ab6d-59990306702d",
+              "name": "Notes",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "def67f19-5a7a-4633-ac57-03064ae43f03",
+              "name": "TourStatusID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "bfe773d0-7bf7-448d-836d-df78d7241255",
+              "name": "accessibility",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "357adcbf-208c-4037-b6c8-4f364ff3f464",
+              "name": "t_type",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "f11f9773-5d0c-430e-a169-fdf08d55fc53",
+              "name": "Status",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "0ef86947-ec7b-4df9-9221-ca07c59a3078",
+              "name": "fk_GUIDE",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "3b627536-0dab-4bd3-998b-1a4e36e84284",
+                "sourceTableId": "8ebb3f5a-11e8-4094-a3d8-940589e0717a",
+                "columns": [
+                  {
+                    "id": "fk_a24ef061-d6d7-4e7c-a546-1cdd81c46886",
+                    "name": "GuideID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            },
+            {
+              "id": "c3e17f5a-fe49-4d83-b999-59fd67a821c4",
+              "name": "fk_ROUTE",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "e818e5fa-b173-42f3-890a-038d67a6c9e7",
+                "sourceTableId": "e7c326d3-e9df-4a45-8ea3-7867ad349fa3",
+                "columns": [
+                  {
+                    "id": "fk_ea3431d2-3c96-4379-8841-39c6f0177cfe",
+                    "name": "RouteID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            },
+            {
+              "id": "c2f35ff1-0d94-4c4c-993c-d070fc26cf94",
+              "name": "fk_TOURSTATUS",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "2f44062c-0f07-4397-a24d-f7e608089c08",
+                "sourceTableId": "0c598a22-fb11-430b-a02a-5e27a3ef1c18",
+                "columns": [
+                  {
+                    "id": "fk_7defedc4-af39-46d3-9ebf-f5f35936d4c6",
+                    "name": "tourstatusid",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 396
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "9a6cdd1b-75ed-41cc-ba7f-7696daca18ea",
+        "type": "Table",
+        "position": {
+          "x": 1829.1694085887893,
+          "y": 514.4833162379807
+        },
+        "data": {
+          "label": "CUSTOMER",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "c046c044-a8fd-4706-a33b-8621c1708ef0",
+              "name": "CustomerID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "77e01ece-97de-4275-8e9d-78dc015072dd",
+              "name": "FullName",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "76700f88-51f4-458a-9ee7-1e5fa5e9510e",
+              "name": "Phone",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "122cf194-3730-49a3-be22-18409ea158ec",
+              "name": "Email",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "a7fe8f77-e3bd-4c7a-b4db-80a20b81c2e9",
+              "name": "JoinDate",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 148
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "94f302a7-5f97-4b13-94f3-93d435dd6405",
+        "type": "Table",
+        "position": {
+          "x": 1506.1569949497343,
+          "y": 485.0800348760114
+        },
+        "data": {
+          "label": "REGISTRATION",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "2a07af65-f40d-4670-bf61-5301752a7a54",
+              "name": "RegistrationID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "64c341f1-6b27-4471-b8fe-779fdc46922c",
+              "name": "RegistrationDate",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "6e301c78-358f-42a7-9367-328a02a62371",
+              "name": "AmountToPay",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "0940adaa-52d0-4d16-b528-7ca3a7eadc21",
+              "name": "Notes",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "2480503f-d970-4ca9-8137-e8eb9cf5dded",
+              "name": "TourID",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "2d5fa619-e6b2-48a7-b8a0-ba030bcd9773",
+              "name": "RegistrationStatusID",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "5415c0d7-fbcc-4b4c-b2bf-be12e33142f6",
+              "name": "Status",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "400295b8-bde8-4f72-a450-a77fff8ae3a9",
+              "name": "fk_CUSTOMER",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "0b39a435-1146-4850-9641-db56bf85d7b8",
+                "sourceTableId": "9a6cdd1b-75ed-41cc-ba7f-7696daca18ea",
+                "columns": [
+                  {
+                    "id": "fk_c046c044-a8fd-4706-a33b-8621c1708ef0",
+                    "name": "CustomerID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            },
+            {
+              "id": "59073836-eaca-45fa-a2a0-da223a0cf4d7",
+              "name": "fk_GUIDEDTOUR",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "66ecf2ba-8b9c-49c6-bd1c-d89c7efce0a1",
+                "sourceTableId": "a33e470e-2251-48cd-9f6d-588a4b9eb52e",
+                "columns": [
+                  {
+                    "id": "fk_def67f19-5a7a-4633-ac57-03064ae43f03",
+                    "name": "TourStatusID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            },
+            {
+              "id": "fe1392a4-923b-4134-9278-2f8788dada3d",
+              "name": "fk_REGISTRATIONSTATUS",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "0fba4404-de93-4503-863c-a85bb16f51d5",
+                "sourceTableId": "db078175-fa8e-4797-8be3-b066f09d5628",
+                "columns": [
+                  {
+                    "id": "fk_d5856e05-8732-48bf-ba31-abb897c9ec9d",
+                    "name": "registrationstatusid",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 272
+        },
+        "selected": true,
+        "dragging": false
+      },
+      {
+        "id": "e7c326d3-e9df-4a45-8ea3-7867ad349fa3",
+        "type": "Table",
+        "position": {
+          "x": 896.9994100147414,
+          "y": 275.6379652922265
+        },
+        "data": {
+          "label": "ROUTE",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "ea3431d2-3c96-4379-8841-39c6f0177cfe",
+              "name": "RouteID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "ac069008-23d4-4547-be50-7e72733da3ca",
+              "name": "r_name",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "67bf20a2-a88d-4bbc-a3b0-63b5ec178ba5",
+              "name": "EstimatedLength",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "10c06bf6-8554-4473-a950-06f7d58698c0",
+              "name": "EstimatedDuration",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "f9981f13-5e4f-43dc-adc4-614dfb85c0ac",
+              "name": "Description",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "20758e92-97bc-45c2-8815-e5dd492559ad",
+              "name": "r_level",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "17119234-f3ab-4888-8b36-78e145b1da85",
+              "name": "area",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 198
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "fb73d69e-ae47-4186-a1ee-ec29fa8a2f3b",
+        "type": "Table",
+        "position": {
+          "x": 1061.5827439580587,
+          "y": 494.93368992414423
+        },
+        "data": {
+          "label": "PAYMENT",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "a6856a45-69d0-4c4e-94d2-9acfd2fafa5e",
+              "name": "PaymentID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "df0bb87d-0910-48a5-aab2-0869ed5b483f",
+              "name": "PaymentDate",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "63cce0a7-48b2-420c-be5e-d88dcfc6b72c",
+              "name": "amount_pay",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "ed6c479e-da01-4b8a-864e-2e50bd33d7c0",
+              "name": "Notes",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "cb83b08e-9311-4a7b-b56d-a067f4f5b520",
+              "name": "PaymentMethod",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "756789ae-d10c-4018-a88a-faa9d0d8d683",
+              "name": "ReferenceNumber",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "103de5b8-c0db-4402-be1f-a3dcb80f3199",
+              "name": "PaymentStatus",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "25a8e3c6-b9b6-450b-b1f4-85d4dd4964d3",
+              "name": "amount _people",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "8171242b-7298-4af7-9f9b-76ec12ee1a17",
+              "name": "fk_REGISTRATION",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "e31b037b-4410-4a3f-9ab7-403a7d1b6527",
+                "sourceTableId": "94f302a7-5f97-4b13-94f3-93d435dd6405",
+                "columns": [
+                  {
+                    "id": "fk_2a07af65-f40d-4670-bf61-5301752a7a54",
+                    "name": "RegistrationID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            },
+            {
+              "id": "30ffa648-87d3-47d2-8137-67fbc9a8d3d5",
+              "name": "fk_PAYMENTSTATUS",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "523a8201-ce78-4138-ba0a-e6e1ae33af27",
+                "sourceTableId": "20f85aa3-ef0c-4ff6-953e-683d441e89a2",
+                "columns": [
+                  {
+                    "id": "fk_e1626618-62f7-4a9a-bc0b-5acac8bc4a7f",
+                    "name": "PaymentStatusID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 272
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "20f85aa3-ef0c-4ff6-953e-683d441e89a2",
+        "type": "Table",
+        "position": {
+          "x": 758.2701981797178,
+          "y": 494.2225146852519
+        },
+        "data": {
+          "label": "PAYMENTSTATUS",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "e1626618-62f7-4a9a-bc0b-5acac8bc4a7f",
+              "name": "PaymentStatusID",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "eefb3f87-0618-4222-82f0-efdacdd01925",
+              "name": "StatusName",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 75
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "87ef63b0-3ae5-40fe-ba52-50e2e0490628",
+        "type": "Table",
+        "position": {
+          "x": 590.9917086072927,
+          "y": 216.90035077006655
+        },
+        "data": {
+          "label": "STATION",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "480ddf8a-25e9-433e-aa33-a00da5d927ad",
+              "name": "s_name",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "24a14998-4d7d-4e8c-85f1-0b36da052b69",
+              "name": "s_address",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "bda70bae-2bf2-40d2-ad17-d45618fa1104",
+              "name": "descrip",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 99
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "17c09efc-7ff2-45f7-a845-3085c5ad056e",
+        "type": "Table",
+        "position": {
+          "x": 592.6111788653741,
+          "y": 335.1216862548074
+        },
+        "data": {
+          "label": "TOURSTATION",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "4a104c81-2fb1-46d9-9478-dd3641de9df5",
+              "name": "t_index",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "119638bf-63f4-4acb-be67-d6e7b2c00ded",
+              "name": "s_during",
+              "type": "INT",
+              "isPrimaryKey": false
+            },
+            {
+              "id": "c901ff98-d2b5-47ed-9b69-8c5c18814994",
+              "name": "fk_STATION",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "e4bb8697-16a1-4001-b005-2b52c241ab30",
+                "sourceTableId": "87ef63b0-3ae5-40fe-ba52-50e2e0490628",
+                "columns": [
+                  {
+                    "id": "fk_480ddf8a-25e9-433e-aa33-a00da5d927ad",
+                    "name": "s_name",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "5e22979d-c9b8-4c67-86b7-f64bb6d4bdaf",
+              "name": "fk_ROUTE",
+              "type": "None",
+              "isForeignKey": true,
+              "foreignKeyProps": {
+                "foreignKeyGroupId": "0efdd316-aa96-4701-9002-19eaac5052f2",
+                "sourceTableId": "e7c326d3-e9df-4a45-8ea3-7867ad349fa3",
+                "columns": [
+                  {
+                    "id": "fk_ea3431d2-3c96-4379-8841-39c6f0177cfe",
+                    "name": "RouteID",
+                    "type": "INT"
+                  }
+                ]
+              },
+              "isPrimaryKey": true,
+              "isOptional": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 124
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "db078175-fa8e-4797-8be3-b066f09d5628",
+        "type": "Table",
+        "position": {
+          "x": 1829.5158914387257,
+          "y": 681.7858765477138
+        },
+        "data": {
+          "label": "REGISTRATIONSTATUS",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "d5856e05-8732-48bf-ba31-abb897c9ec9d",
+              "name": "registrationstatusid",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "e2b9d620-80b5-4349-b206-db34c738f205",
+              "name": "statusname",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 75
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "0c598a22-fb11-430b-a02a-5e27a3ef1c18",
+        "type": "Table",
+        "position": {
+          "x": 1548.4405436976806,
+          "y": 390.63260679057663
+        },
+        "data": {
+          "label": "TOURSTATUS",
+          "isConnectable": false,
+          "columns": [
+            {
+              "id": "7defedc4-af39-46d3-9ebf-f5f35936d4c6",
+              "name": "tourstatusid",
+              "type": "INT",
+              "isPrimaryKey": true,
+              "isOptional": false
+            },
+            {
+              "id": "9dabe379-d8a5-46aa-9a08-ec0fc3151334",
+              "name": "statusname",
+              "type": "INT",
+              "isPrimaryKey": false
+            }
+          ],
+          "numberOfGroups": 0,
+          "isSelected": false
+        },
+        "measured": {
+          "width": 240,
+          "height": 75
+        },
+        "selected": false,
+        "dragging": false
+      }
+    ],
+    "edges": [
+      {
+        "id": "8ebb3f5a-11e8-4094-a3d8-940589e0717a->a33e470e-2251-48cd-9f6d-588a4b9eb52e_3b627536-0dab-4bd3-998b-1a4e36e84284",
+        "type": "Relational",
+        "source": "8ebb3f5a-11e8-4094-a3d8-940589e0717a",
+        "targetHandle": "foreign-key-handle-3b627536-0dab-4bd3-998b-1a4e36e84284",
+        "target": "a33e470e-2251-48cd-9f6d-588a4b9eb52e",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "3b627536-0dab-4bd3-998b-1a4e36e84284",
+            "sourceTableId": "8ebb3f5a-11e8-4094-a3d8-940589e0717a",
+            "columns": [
+              {
+                "id": "fk_a24ef061-d6d7-4e7c-a546-1cdd81c46886",
+                "name": "GuideID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "e7c326d3-e9df-4a45-8ea3-7867ad349fa3->a33e470e-2251-48cd-9f6d-588a4b9eb52e_e818e5fa-b173-42f3-890a-038d67a6c9e7",
+        "type": "Relational",
+        "source": "e7c326d3-e9df-4a45-8ea3-7867ad349fa3",
+        "targetHandle": "foreign-key-handle-e818e5fa-b173-42f3-890a-038d67a6c9e7",
+        "target": "a33e470e-2251-48cd-9f6d-588a4b9eb52e",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "e818e5fa-b173-42f3-890a-038d67a6c9e7",
+            "sourceTableId": "e7c326d3-e9df-4a45-8ea3-7867ad349fa3",
+            "columns": [
+              {
+                "id": "fk_ea3431d2-3c96-4379-8841-39c6f0177cfe",
+                "name": "RouteID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "0c598a22-fb11-430b-a02a-5e27a3ef1c18->a33e470e-2251-48cd-9f6d-588a4b9eb52e_2f44062c-0f07-4397-a24d-f7e608089c08",
+        "type": "Relational",
+        "source": "0c598a22-fb11-430b-a02a-5e27a3ef1c18",
+        "targetHandle": "foreign-key-handle-2f44062c-0f07-4397-a24d-f7e608089c08",
+        "target": "a33e470e-2251-48cd-9f6d-588a4b9eb52e",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "2f44062c-0f07-4397-a24d-f7e608089c08",
+            "sourceTableId": "0c598a22-fb11-430b-a02a-5e27a3ef1c18",
+            "columns": [
+              {
+                "id": "fk_7defedc4-af39-46d3-9ebf-f5f35936d4c6",
+                "name": "tourstatusid",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "9a6cdd1b-75ed-41cc-ba7f-7696daca18ea->94f302a7-5f97-4b13-94f3-93d435dd6405_0b39a435-1146-4850-9641-db56bf85d7b8",
+        "type": "Relational",
+        "source": "9a6cdd1b-75ed-41cc-ba7f-7696daca18ea",
+        "targetHandle": "foreign-key-handle-0b39a435-1146-4850-9641-db56bf85d7b8",
+        "target": "94f302a7-5f97-4b13-94f3-93d435dd6405",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "0b39a435-1146-4850-9641-db56bf85d7b8",
+            "sourceTableId": "9a6cdd1b-75ed-41cc-ba7f-7696daca18ea",
+            "columns": [
+              {
+                "id": "fk_c046c044-a8fd-4706-a33b-8621c1708ef0",
+                "name": "CustomerID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "a33e470e-2251-48cd-9f6d-588a4b9eb52e->94f302a7-5f97-4b13-94f3-93d435dd6405_66ecf2ba-8b9c-49c6-bd1c-d89c7efce0a1",
+        "type": "Relational",
+        "source": "a33e470e-2251-48cd-9f6d-588a4b9eb52e",
+        "targetHandle": "foreign-key-handle-66ecf2ba-8b9c-49c6-bd1c-d89c7efce0a1",
+        "target": "94f302a7-5f97-4b13-94f3-93d435dd6405",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "66ecf2ba-8b9c-49c6-bd1c-d89c7efce0a1",
+            "sourceTableId": "a33e470e-2251-48cd-9f6d-588a4b9eb52e",
+            "columns": [
+              {
+                "id": "fk_def67f19-5a7a-4633-ac57-03064ae43f03",
+                "name": "TourStatusID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "db078175-fa8e-4797-8be3-b066f09d5628->94f302a7-5f97-4b13-94f3-93d435dd6405_0fba4404-de93-4503-863c-a85bb16f51d5",
+        "type": "Relational",
+        "source": "db078175-fa8e-4797-8be3-b066f09d5628",
+        "targetHandle": "foreign-key-handle-0fba4404-de93-4503-863c-a85bb16f51d5",
+        "target": "94f302a7-5f97-4b13-94f3-93d435dd6405",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "0fba4404-de93-4503-863c-a85bb16f51d5",
+            "sourceTableId": "db078175-fa8e-4797-8be3-b066f09d5628",
+            "columns": [
+              {
+                "id": "fk_d5856e05-8732-48bf-ba31-abb897c9ec9d",
+                "name": "registrationstatusid",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "94f302a7-5f97-4b13-94f3-93d435dd6405->fb73d69e-ae47-4186-a1ee-ec29fa8a2f3b_e31b037b-4410-4a3f-9ab7-403a7d1b6527",
+        "type": "Relational",
+        "source": "94f302a7-5f97-4b13-94f3-93d435dd6405",
+        "targetHandle": "foreign-key-handle-e31b037b-4410-4a3f-9ab7-403a7d1b6527",
+        "target": "fb73d69e-ae47-4186-a1ee-ec29fa8a2f3b",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "e31b037b-4410-4a3f-9ab7-403a7d1b6527",
+            "sourceTableId": "94f302a7-5f97-4b13-94f3-93d435dd6405",
+            "columns": [
+              {
+                "id": "fk_2a07af65-f40d-4670-bf61-5301752a7a54",
+                "name": "RegistrationID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "20f85aa3-ef0c-4ff6-953e-683d441e89a2->fb73d69e-ae47-4186-a1ee-ec29fa8a2f3b_523a8201-ce78-4138-ba0a-e6e1ae33af27",
+        "type": "Relational",
+        "source": "20f85aa3-ef0c-4ff6-953e-683d441e89a2",
+        "targetHandle": "foreign-key-handle-523a8201-ce78-4138-ba0a-e6e1ae33af27",
+        "target": "fb73d69e-ae47-4186-a1ee-ec29fa8a2f3b",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "523a8201-ce78-4138-ba0a-e6e1ae33af27",
+            "sourceTableId": "20f85aa3-ef0c-4ff6-953e-683d441e89a2",
+            "columns": [
+              {
+                "id": "fk_e1626618-62f7-4a9a-bc0b-5acac8bc4a7f",
+                "name": "PaymentStatusID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "87ef63b0-3ae5-40fe-ba52-50e2e0490628->17c09efc-7ff2-45f7-a845-3085c5ad056e_e4bb8697-16a1-4001-b005-2b52c241ab30",
+        "type": "Relational",
+        "source": "87ef63b0-3ae5-40fe-ba52-50e2e0490628",
+        "targetHandle": "foreign-key-handle-e4bb8697-16a1-4001-b005-2b52c241ab30",
+        "target": "17c09efc-7ff2-45f7-a845-3085c5ad056e",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "e4bb8697-16a1-4001-b005-2b52c241ab30",
+            "sourceTableId": "87ef63b0-3ae5-40fe-ba52-50e2e0490628",
+            "columns": [
+              {
+                "id": "fk_480ddf8a-25e9-433e-aa33-a00da5d927ad",
+                "name": "s_name",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "e7c326d3-e9df-4a45-8ea3-7867ad349fa3->17c09efc-7ff2-45f7-a845-3085c5ad056e_0efdd316-aa96-4701-9002-19eaac5052f2",
+        "type": "Relational",
+        "source": "e7c326d3-e9df-4a45-8ea3-7867ad349fa3",
+        "targetHandle": "foreign-key-handle-0efdd316-aa96-4701-9002-19eaac5052f2",
+        "target": "17c09efc-7ff2-45f7-a845-3085c5ad056e",
+        "markerStart": {
+          "type": "arrow"
+        },
+        "data": {
+          "foreignKeyProps": {
+            "foreignKeyGroupId": "0efdd316-aa96-4701-9002-19eaac5052f2",
+            "sourceTableId": "e7c326d3-e9df-4a45-8ea3-7867ad349fa3",
+            "columns": [
+              {
+                "id": "fk_ea3431d2-3c96-4379-8841-39c6f0177cfe",
+                "name": "RouteID",
+                "type": "INT"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "viewport": {
+      "x": -150.77522555926862,
+      "y": 43.10047137455638,
+      "zoom": 0.5861812300255372
+    }
+  },
+  "name": "both_FIN.erdplus -Relational Schema",
+  "folder": {
+    "name": "Guided Tours",
+    "folderType": 2,
+    "parentFolder": {
+      "depth": 0,
+      "id": 260772,
+      "name": "Diagrams",
+      "folderType": 1
+    },
+    "depth": 1,
+    "id": 260778
+  },
+  "id": 472333,
+  "updatedAtTimestamp": 1780257639
+}
