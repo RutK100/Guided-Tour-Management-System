@@ -706,8 +706,10 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 הסבר לתוצאות: זמן הריצה התקצר משום שבסיס הנתונים משתמש באינדקס כדי למצוא את הרשומות הרלוונטיות כשהן כבר ממוינות מראש. פעולה זו חוסכת את עלות המיון (Sort) בזיכרון לאחר שליפת הנתונים, ומאפשרת הצגת תוצאות מהירה יותר.
 
 
-#phase-3-Integrates
-![](/DBProject_214994642_326081148/phaseC/)
+# phase-3-Integrates
+תרשימי האגף החדש- מערכת מדריכי הטיולים (גילת ושיראל) 
+![](/DBProject_214994642_326081148/phaseC/another_system_Guides/DSD.png)
+![](/DBProject_214994642_326081148/phaseC/DSD.png)
 
 
 
