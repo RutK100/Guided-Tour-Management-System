@@ -741,7 +741,8 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 ![](/DBProject_214994642_326081148/phaseC/another_system_Guides/DSD.png)
 
 
-**[צפייה בקובץ הדיאגרמה] (/DBProject_214994642_326081148/phaseC/another_system_Guides/GuideSystem.erdplus))**
+**[צפייה בקובץ הדיאגרמה](/DBProject_214994642_326081148/phaseC/another_system_Guides/GuideSystem.erdplus)**
+
 
 
 ### תרשימים של המערכת המאוחדת
