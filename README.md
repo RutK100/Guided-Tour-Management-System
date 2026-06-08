@@ -14,8 +14,6 @@ Rut Kalimi and Shirel Farzam
 - [Phase 3: Integrates](#phase-3-Integrates)
 - [Phase 4:  PL/pgSQL](#phase-4-PL/pgSQL)
 
-# Phase 4 PL/pgSQL
-
 # Phase 1: Design and Build the Database  
 
 ### Introduction
@@ -771,7 +769,7 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 **[View backup3.sql](/DBProject_214994642_326081148/phaseC/backup3.sql)**
 
 
-# Phase-4-PL/pgSQL
+# Phase 4 PL/pgSQL
 
 ## תוכנית ראשונה - 
 
@@ -830,12 +828,15 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 ## טריגר שני - 
 טריגר זה מופעל בעת עדכון (UPDATE) של הסטטוס בטבלת הסיורים המודרכים (guidedtour). כאשר סיור מסוים מבוטל או משנה את הסטטוס שלו לסטטוס שאינו פעיל (בבדיקה זו: מעבר לסטטוס 3), הטריגר מופעל אוטומטית ומבצע עדכון שרשרת (Cascade Update) בטבלת ההרשמות (registration). הוא מאתר את כל המשתמשים הרשומים לאותו סיור, מעדכן את סטטוס ההרשמה שלהם לסטטוס מבוטל, ומדפיס הודעת מערכת מתאימה עם מזהה הסיור שבוטל.
 
+
 שלב א': מצב הסיור הנוכחי לפני השינוי
 
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/‏‏trigger2/1.png)
+
 שלב ב': עדכון סטטוס הסיור והפעלת הטריגר
 
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/‏‏trigger2/2.png)
+
 שלב ג': הוכחת עדכון שרשרת בטבלת ההרשמות
 
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/‏‏trigger2/3.png)
