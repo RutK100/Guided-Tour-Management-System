@@ -797,13 +797,16 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 עיבוד ותשלום דינמי: זימון פונקציות/פרוצדורות הפועלות בלולאה על רשומות הסיורים של הלקוח, הפקת מזהי תשלום ייחודיים (payment ID) ועדכון ה-DB (ביצוע פקודות DML לעדכון סטטוס הרישום ויצירת רשומות תשלום).
 בדיקת סיום: וידוא איפוס החוב וסגירת כל הרישומים הפתוחים בהצלחה
 
+
 מצב בסיס הנתונים לפני הרצת התוכנית:
 
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog2/pre_prog2.png)
+
 פלט הרצת התוכנית הראשית:
 
 
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog2/pro_prog2.png)
+
 מצב בסיס הנתונים לאחר הרצת התוכנית:
 
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog2/prog2.png)
