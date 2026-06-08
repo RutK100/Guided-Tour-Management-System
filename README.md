@@ -797,9 +797,18 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 
-## טריגר ראשון - 
+## טריגר ראשון -
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger1/א.png)
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger1/ב.png)
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger1/ג.png)
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger1/ד.png)
+
+
 
 ## טריגר שני - 
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger2/1.png)
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger2/2.png)
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger2/3.png)
 
 
 
