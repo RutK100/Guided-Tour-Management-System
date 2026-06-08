@@ -783,6 +783,8 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/pro_prog1.png)
 
+
+
 ## תוכנית שנייה 
 # ניהול תשלום חובות לקוחות
 תוכנית זו מיועדת לניהול מרוכז של חובות פיננסיים של לקוחות במערכת עבור רישומי סיורים פתוחים שטרם שולמו (registrationstatusid = 1).
