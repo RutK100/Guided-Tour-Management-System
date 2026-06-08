@@ -851,15 +851,15 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 
-**[View backup4.sql](/DBProject_214994642_326081148/phaseD/AlterTable.sql)**
+**[View AlterTable.sql](/DBProject_214994642_326081148/phaseD/AlterTable.sql)**
 
 **[View backup4.sql](/DBProject_214994642_326081148/phaseD/backup_phaseD)**
 
-**[View backup4.sql](/DBProject_214994642_326081148/phaseD/func-proc_trigg.sql)**
+**[View func-proc_trigg.sql](/DBProject_214994642_326081148/phaseD/func-proc_trigg.sql)**
 
-**[View backup4.sql](/DBProject_214994642_326081148/phaseD/prog1_registation.sql)**
+**[View prog1_registation.sql](/DBProject_214994642_326081148/phaseD/prog1_registation.sql)**
 
-**[View backup4.sql](/DBProject_214994642_326081148/phaseD/prog_payment.sql)**
+**[View prog_payment.sql](/DBProject_214994642_326081148/phaseD/prog_payment.sql)**
 
 
 
