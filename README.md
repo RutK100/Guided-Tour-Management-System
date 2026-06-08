@@ -851,11 +851,18 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 
-**[View backup4.sql](/DBProject_214994642_326081148/phaseD/AlterTablesql)**
+**[View backup4.sql](/DBProject_214994642_326081148/phaseD/AlterTable.sql)**
 
 **[View backup4.sql](/DBProject_214994642_326081148/phaseD/backup_phaseD)**
 
-**[View backup4.sql](/DBProject_214994642_326081148/phaseD/backup_phaseD)**
+**[View backup4.sql](/DBProject_214994642_326081148/phaseD/func-proc_trigg.sql)**
+
+**[View backup4.sql](/DBProject_214994642_326081148/phaseD/prog1_registation.sql)**
+
+**[View backup4.sql](/DBProject_214994642_326081148/phaseD/prog_payment.sql)**
+
+
+
 
 גיבוי שלב זה:
 
