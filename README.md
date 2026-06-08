@@ -791,6 +791,12 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 **[לפני הרצת התוכנית](DBProject_214994642_326081148/phaseD/imagesForReadme/pre_prog2)**
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog2/pre_prog2.png)
 
+
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog2/pro_prog2.png)
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog2/prog2.png)
+
+
+
 ## טריגר ראשון - 
 
 ## טריגר שני - 
