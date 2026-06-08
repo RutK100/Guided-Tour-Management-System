@@ -852,12 +852,14 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 דכוני מבנה ותשתית בסיס הנתונים (AlterTable)
 לצורך מימוש מנגנוני האוטומציה והביקורת בשלב זה, בוצעו התאמות במבנה בסיס הנתונים הכוללות את הקמת טבלת הביקורת הייעודית registration_audit המשמשת כארכיון לתיעוד היסטוריית שינויי סטטוסים, לצד עדכון עמודת סכום התשלום (amounttopay) בטבלת ההרשמות לקבלת ערך ברירת מחדל של 0 ₪ כדי להבטיח את שלמות הנתונים ומניעת ערכי NULL.
+
+
 **[View AlterTable.sql](/DBProject_214994642_326081148/phaseD/AlterTable.sql)**
 
 
 **[View backup4.sql](/DBProject_214994642_326081148/phaseD/backup_phaseD)**
 
-**[View func-proc_trigg.sql](/DBProject_214994642_326081148/phaseD/func-proc_trigg.sql)**
+**[View func_proc_trigg.sql](/DBProject_214994642_326081148/phaseD/func_proc_trigg.sql)**
 
 **[View prog1_registation.sql](/DBProject_214994642_326081148/phaseD/prog1_registation.sql)**
 
