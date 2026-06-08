@@ -795,11 +795,14 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 בדיקת סיום: וידוא איפוס החוב וסגירת כל הרישומים הפתוחים בהצלחה
 מצב בסיס הנתונים לפני הרצת התוכנית:
 **[לפני הרצת התוכנית](DBProject_214994642_326081148/phaseD/imagesForReadme/pre_prog2)**
+
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog2/pre_prog2.png)
 פלט הרצת התוכנית הראשית:
 
+
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog2/pro_prog2.png)
 מצב בסיס הנתונים לאחר הרצת התוכנית:
+
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog2/prog2.png)
 
 
@@ -809,12 +812,16 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 תיעוד וביקורת שינויי סטטוס הרשמה (UPDATE Trigger)
 טריגר זה מופעל אוטומטית בכל פעם שמבוצעת פקודת UPDATE על עמודת הסטטוס בטבלת ההרשמות (registration). תפקידו של הטריגר הוא לשמור על שלמות הנתונים ולנהל היסטוריית שינויים (Audit Trail). ברגע שסטטוס של הרשמה משתנה, הטריגר תופס את המצב הישן ומכניס באופן אוטומטי שורת תיעוד לטבלת הביקורת registration_audit, הכוללת את מזהה ההרשמה, הסטטוס הישן וחותמת זמן מדויקת של השינוי
 .-שלב א': מצב הרשומה הנוכחי לפני השינוי
+
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger1/א.png)
 שלב ב': ביצוע עדכון (UPDATE) לסטטוס ההרשמה
+
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger1/ב.png)
 שלב ג': וידוא עדכון הנתונים בטבלת המקור
+
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger1/ג.png)
 שלב ד': הוכחת פעולת הטריגר בטבלת הביקורת
+
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger1/ד.png)
 
 
@@ -822,10 +829,13 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 ## טריגר שני - 
 טריגר זה מופעל בעת עדכון (UPDATE) של הסטטוס בטבלת הסיורים המודרכים (guidedtour). כאשר סיור מסוים מבוטל או משנה את הסטטוס שלו לסטטוס שאינו פעיל (בבדיקה זו: מעבר לסטטוס 3), הטריגר מופעל אוטומטית ומבצע עדכון שרשרת (Cascade Update) בטבלת ההרשמות (registration). הוא מאתר את כל המשתמשים הרשומים לאותו סיור, מעדכן את סטטוס ההרשמה שלהם לסטטוס מבוטל, ומדפיס הודעת מערכת מתאימה עם מזהה הסיור שבוטל.
 שלב א': מצב הסיור הנוכחי לפני השינוי
+
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/‏‏trigger2/1.png)
 שלב ב': עדכון סטטוס הסיור והפעלת הטריגר
+
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/‏‏trigger2/2.png)
 שלב ג': הוכחת עדכון שרשרת בטבלת ההרשמות
+
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/‏‏trigger2/3.png)
 
 
