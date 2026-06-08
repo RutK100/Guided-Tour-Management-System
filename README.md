@@ -775,15 +775,12 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 ## תוכנית ראשונה - 
 
-**[לפני הרצת התוכנית](DBProject_214994642_326081148/phaseD/imagesForReadme/prog1/pre_prog1.png)**
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog1/pre_prog1.png)
 
 
-**[לפני הרצת התוכנית](DBProject_214994642_326081148/phaseD/imagesForReadme/prog1/prog1)**
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/prog1/prog1.png)
 
 
-**[לפני הרצת התוכנית](DBProject_214994642_326081148/phaseD/imagesForReadme/pro_prog1)**
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/pro_prog1.png)
 
 ## תוכנית שנייה 
