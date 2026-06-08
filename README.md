@@ -807,8 +807,8 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 ## טריגר שני - 
 ![](/DBProject_214994642_326081148/phaseD/imagesForReadme/‏‏trigger2/1.png)
-![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger2/2.png)
-![](/DBProject_214994642_326081148/phaseD/imagesForReadme/trigger2/3.png)
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/‏‏trigger2/2.png)
+![](/DBProject_214994642_326081148/phaseD/imagesForReadme/‏‏trigger2/3.png)
 
 
 
