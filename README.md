@@ -12,7 +12,7 @@ Rut Kalimi and Shirel Farzam
   - [Backup](#backup)  
 - [Phase 2: Queries](#phase-2-Queries)
 - [Phase 3: Integrates](#phase-3-Integrates)
-- [Phase 4:  PL/pgSQL](#phase-4-PL/pgSQL)
+- [Phase 4: PL/pgSQL](#phase-4-plpgsql)
 
 
 # Phase 1: Design and Build the Database  
