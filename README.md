@@ -869,6 +869,9 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 **[View prog1_registation.sql](/DBProject_214994642_326081148/phaseD/prog1_registation.sql)**
 
+תוכנית ראשית זו מנהלת את פירעון חובותיו של לקוח 20, על ידי בדיקת יתרת החוב באמצעות פונקציה, זימון הפרוצדורה המשלמת ומאפסת את החוב, ווידוא סופי של האיפוס. לצדה מצורפת שאילתת בקרה השולפת את כמות ההרשמות הפתוחות וסך החוב הכולל של הלקוח לפני ואחרי התהליך לצורך הוכחת תקינות העדכון.
+
+
 **[View prog_payment.sql](/DBProject_214994642_326081148/phaseD/prog2_payment.sql)**
 
 
