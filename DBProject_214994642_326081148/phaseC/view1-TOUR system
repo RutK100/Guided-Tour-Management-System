@@ -1,0 +1,35 @@
+-- View המציג ביצועי סיורים: שם הסיור, שם המדריך, כמות התחנות ופעמים שבוצע
+CREATE OR REPLACE VIEW tour_comprehensive_performance AS
+SELECT 
+    t.t_name,
+    g.g_first_name || ' ' || g.g_last_name AS guide_name,
+    COUNT(DISTINCT ts.t_index) AS total_stations_count,
+    COUNT(DISTINCT ti.t_i_id) AS times_executed
+FROM tour t
+JOIN tourinstance ti ON t.t_name = ti.t_name
+JOIN guide g ON ti.g_id = g.g_id
+JOIN tourstation ts ON t.t_name = ts.t_name
+GROUP BY t.t_name, g.g_first_name, g.g_last_name;
+
+-- Q1: איתור סיורים "מבוקשים" שבוצעו יותר מפעם אחת
+-- השאילתה מדרגת סיורים לפי פופולריות (כמות ביצועים) ומורכבות (מספר תחנות),
+-- כדי לעזור למנהל המערכת לזהות אילו מסלולים דורשים יותר תשומת לב ותחזוקה.
+SELECT 
+    t_name, 
+    times_executed, 
+    total_stations_count
+FROM tour_comprehensive_performance
+WHERE times_executed > 1
+ORDER BY times_executed DESC, total_stations_count DESC;
+
+-- Q2: הערכת עומס ומיומנות מדריכים
+-- השאילתה מחשבת את סך מורכבות התחנות שכל מדריך טיפל בהן במצטבר,
+-- ומציגה רק מדריכים שהובילו מעל 10 תחנות במצטבר
+
+SELECT 
+    guide_name, 
+    SUM(total_stations_count) AS count_stations
+FROM tour_comprehensive_performance
+GROUP BY guide_name
+HAVING SUM(total_stations_count) > 10
+ORDER BY total_complexity_handled DESC;

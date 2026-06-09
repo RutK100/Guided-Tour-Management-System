@@ -1,0 +1,33 @@
+--view2
+CREATE OR REPLACE VIEW customer_financial_status AS
+SELECT 
+    c.customerid,
+    c.fullname,
+    COUNT(p.paymentid) AS total_payments_count,
+    SUM(p.amount) AS total_amount_paid,
+    ps.statusname AS latest_payment_status
+FROM customer c
+JOIN registration r ON c.customerid = r.customerid
+JOIN payment p ON r.registrationid = p.registrationid
+JOIN paymentstatus ps ON p.paymentstatusid = ps.paymentstatusid
+GROUP BY c.customerid, c.fullname, ps.statusname;
+
+-- שאילתה זו מאתרת לקוחות עם סך תשלומים גבוה ומציגה את הסטטוס שלהם
+SELECT 
+    fullname, 
+    total_amount_paid, 
+    latest_payment_status
+FROM customer_financial_status
+WHERE total_amount_paid > 1000
+ORDER BY total_amount_paid DESC;
+
+-- איתור לקוחות עם תדירות תשלומים גבוהה 
+SELECT 
+    fullname, 
+    total_payments_count, 
+    total_amount_paid
+FROM customer_financial_status
+WHERE total_payments_count > 20 AND total_amount_paid < 20000
+ORDER BY total_payments_count DESC;
+
+
