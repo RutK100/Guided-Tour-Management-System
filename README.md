@@ -869,7 +869,7 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 **[View prog1_registation.sql](/DBProject_214994642_326081148/phaseD/prog1_registation.sql)**
 
-**[View prog_payment.sql](/DBProject_214994642_326081148/phaseD/prog_payment.sql)**
+**[View prog_payment.sql](/DBProject_214994642_326081148/phaseD/prog2_payment.sql)**
 
 
 
