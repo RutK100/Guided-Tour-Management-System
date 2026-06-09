@@ -857,8 +857,6 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 **[View AlterTable.sql](/DBProject_214994642_326081148/phaseD/AlterTable.sql)**
 
 
-**[View backup4.sql](/DBProject_214994642_326081148/phaseD/backup_phaseD)**
-
 קובץ ובו 2 הפונקציות 2 הפרוצדורות ו2 הטריגרים ושאילתותהם (פירוט והסבר לכל אחד בתוך הקובץ)
 
 
