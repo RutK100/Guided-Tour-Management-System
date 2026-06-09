@@ -858,9 +858,14 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 **[View backup4.sql](/DBProject_214994642_326081148/phaseD/backup_phaseD)**
+
 קובץ ובו 2 הפונקציות 2 הפרוצדורות ו2 הטריגרים ושאילתותהם (פירוט והסבר לכל אחד בתוך הקובץ)
 
+
 **[View func_proc_trigg.sql](/DBProject_214994642_326081148/phaseD/func_proc_trigg.sql)**
+
+תוכנית ראשית זו מנהלת את רישום לקוח 60 לסיור 200, תוך קריאה לפונקציית בדיקת המקומות הפנויים וזימון הפרוצדורה לביצוע הרישום בפועל. היא כוללת שאילתות מעקב להצגת רשימת הרשומים ואיתור סיורים זמינים, המבטיחות את תקינות הנתונים ועדכונם ב-DB.
+
 
 **[View prog1_registation.sql](/DBProject_214994642_326081148/phaseD/prog1_registation.sql)**
 
