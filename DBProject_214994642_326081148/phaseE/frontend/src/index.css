@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Montserrat", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased;
+    background-color: #dcfce7; /* Slightly darker light green (Green 100) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24' fill='none' stroke='%23065f46' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round' style='opacity: 0.12'%3E%3Cg transform='rotate(35 12 12)'%3E%3Cpath d='M12 22v-3C12 19 18 16 18 11C18 6 12.5 3 12 2C11.5 3 6 6 6 11C6 16 12 19 12 19'/%3E%3Cpath d='M12 19v-6'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 64px 64px;
+    background-attachment: fixed;
+  }
+}
