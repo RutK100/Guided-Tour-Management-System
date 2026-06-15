@@ -158,7 +158,7 @@ def delete_customer(customerid):
         conn.close()
 
 
-# ------------------------ מקטע API 4: מדריכים ------------------------
+# ------------------------ מקטע API 4: מדריכים CRUD ------------------------
 @app.route("/api/guides", methods=["GET"])
 def get_guides():
     rows = query_all("""
@@ -178,20 +178,484 @@ def get_guides():
     return jsonify(rows)
 
 
-# ------------------------ מקטע API 5: מסלולים ------------------------
+@app.route("/api/guides", methods=["POST"])
+def add_guide():
+    data = request.get_json() or {}
+
+    required_fields = ["guideid", "firstname", "lastname", "phone", "email"]
+    missing = [field for field in required_fields if data.get(field) in (None, "")]
+
+    if missing:
+        return jsonify({
+            "error": "Missing required fields: " + ", ".join(missing)
+        }), 400
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+                    INSERT INTO guide (
+                        guideid, firstname, lastname, phone, email,
+                        birthdate, joindate, dailyrate, experienceyears,
+                        rating, address, notes, school
+                    )
+                    VALUES (
+                               %s, %s, %s, %s, %s,
+                               %s::date, %s::date, %s, %s,
+                               %s, %s, %s, %s
+                           )
+                        RETURNING guideid;
+                    """, (
+                        data.get("guideid"),
+                        data.get("firstname"),
+                        data.get("lastname"),
+                        data.get("phone"),
+                        data.get("email"),
+                        data.get("birthdate"),
+                        data.get("joindate"),
+                        data.get("dailyrate"),
+                        data.get("experienceyears"),
+                        data.get("rating"),
+                        data.get("address"),
+                        data.get("notes"),
+                        data.get("school")
+                    ))
+
+        guideid = cur.fetchone()[0]
+        conn.commit()
+
+        return jsonify({
+            "message": "Guide added successfully",
+            "guideid": guideid
+        }), 201
+
+    except Exception as error:
+        conn.rollback()
+        return jsonify({"error": str(error)}), 500
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.route("/api/guides/<int:guideid>", methods=["PUT"])
+def update_guide(guideid):
+    data = request.get_json() or {}
+
+    required_fields = ["firstname", "lastname", "phone", "email"]
+    missing = [field for field in required_fields if data.get(field) in (None, "")]
+
+    if missing:
+        return jsonify({
+            "error": "Missing required fields: " + ", ".join(missing)
+        }), 400
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+                    UPDATE guide
+                    SET firstname = %s,
+                        lastname = %s,
+                        phone = %s,
+                        email = %s,
+                        birthdate = %s::date,
+                joindate = %s::date,
+                        dailyrate = %s,
+                        experienceyears = %s,
+                        rating = %s,
+                        address = %s,
+                        notes = %s,
+                        school = %s
+                    WHERE guideid = %s
+                        RETURNING guideid;
+                    """, (
+                        data.get("firstname"),
+                        data.get("lastname"),
+                        data.get("phone"),
+                        data.get("email"),
+                        data.get("birthdate"),
+                        data.get("joindate"),
+                        data.get("dailyrate"),
+                        data.get("experienceyears"),
+                        data.get("rating"),
+                        data.get("address"),
+                        data.get("notes"),
+                        data.get("school"),
+                        guideid
+                    ))
+
+        updated = cur.fetchone()
+
+        if not updated:
+            conn.rollback()
+            return jsonify({"error": "Guide not found"}), 404
+
+        conn.commit()
+        return jsonify({
+            "message": "Guide updated successfully",
+            "guideid": guideid
+        })
+
+    except Exception as error:
+        conn.rollback()
+        return jsonify({"error": str(error)}), 500
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.route("/api/guides/<int:guideid>", methods=["DELETE"])
+def delete_guide(guideid):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+                    DELETE FROM guide
+                    WHERE guideid = %s
+                        RETURNING guideid;
+                    """, (guideid,))
+
+        deleted = cur.fetchone()
+
+        if not deleted:
+            conn.rollback()
+            return jsonify({"error": "Guide not found"}), 404
+
+        conn.commit()
+        return jsonify({
+            "message": "Guide deleted successfully",
+            "guideid": guideid
+        })
+
+    except Exception as error:
+        conn.rollback()
+        return jsonify({
+            "error": (
+                "Could not delete this guide. "
+                "The guide may still be assigned to one or more tour instances."
+            ),
+            "details": str(error)
+        }), 409
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+# ------------------------ מקטע API 5: מסלולים CRUD ------------------------
 @app.route("/api/routes", methods=["GET"])
 def get_routes():
     rows = query_all("""
-                     SELECT routeid, r_name, estimatedlength, estimatedduration,
-                            description, r_level, area
-                     FROM route
-                     ORDER BY routeid;
+                     SELECT
+                         r.routeid,
+                         r.r_name,
+                         r.estimatedlength,
+                         r.estimatedduration,
+                         r.description,
+                         r.r_level,
+                         r.area,
+                         MIN(gt.price) AS min_price
+                     FROM route r
+                              LEFT JOIN guidedtour gt ON gt.routeid = r.routeid
+                     GROUP BY
+                         r.routeid,
+                         r.r_name,
+                         r.estimatedlength,
+                         r.estimatedduration,
+                         r.description,
+                         r.r_level,
+                         r.area
+                     ORDER BY r.routeid;
                      """)
 
     for row in rows:
-        row["estimatedlength"] = float(row["estimatedlength"]) if row["estimatedlength"] is not None else None
+        row["estimatedlength"] = (
+            float(row["estimatedlength"])
+            if row["estimatedlength"] is not None
+            else None
+        )
+        row["min_price"] = (
+            float(row["min_price"])
+            if row["min_price"] is not None
+            else None
+        )
 
     return jsonify(rows)
+
+
+@app.route("/api/routes", methods=["POST"])
+def add_route():
+    data = request.get_json() or {}
+
+    if data.get("routeid") in (None, "") or not data.get("r_name"):
+        return jsonify({
+            "error": "Route ID and route name are required"
+        }), 400
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+                    INSERT INTO route (
+                        routeid, r_name, estimatedlength, estimatedduration,
+                        description, r_level, area
+                    )
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                        RETURNING routeid;
+                    """, (
+                        data.get("routeid"),
+                        data.get("r_name"),
+                        data.get("estimatedlength"),
+                        data.get("estimatedduration"),
+                        data.get("description"),
+                        data.get("r_level"),
+                        data.get("area")
+                    ))
+
+        routeid = cur.fetchone()[0]
+        conn.commit()
+
+        return jsonify({
+            "message": "Route added successfully",
+            "routeid": routeid
+        }), 201
+
+    except Exception as error:
+        conn.rollback()
+        return jsonify({"error": str(error)}), 500
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.route("/api/routes/<int:routeid>", methods=["PUT"])
+def update_route(routeid):
+    data = request.get_json() or {}
+
+    if not data.get("r_name"):
+        return jsonify({"error": "Route name is required"}), 400
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+                    UPDATE route
+                    SET r_name = %s,
+                        estimatedlength = %s,
+                        estimatedduration = %s,
+                        description = %s,
+                        r_level = %s,
+                        area = %s
+                    WHERE routeid = %s
+                        RETURNING routeid;
+                    """, (
+                        data.get("r_name"),
+                        data.get("estimatedlength"),
+                        data.get("estimatedduration"),
+                        data.get("description"),
+                        data.get("r_level"),
+                        data.get("area"),
+                        routeid
+                    ))
+
+        updated = cur.fetchone()
+
+        if not updated:
+            conn.rollback()
+            return jsonify({"error": "Route not found"}), 404
+
+        conn.commit()
+
+        return jsonify({
+            "message": (
+                "Route updated successfully. "
+                "Related tour instances now display the updated route data."
+            ),
+            "routeid": routeid
+        })
+
+    except Exception as error:
+        conn.rollback()
+        return jsonify({"error": str(error)}), 500
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.route("/api/routes/<int:routeid>", methods=["DELETE"])
+def delete_route(routeid):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+                    DELETE FROM route
+                    WHERE routeid = %s
+                        RETURNING routeid;
+                    """, (routeid,))
+
+        deleted = cur.fetchone()
+
+        if not deleted:
+            conn.rollback()
+            return jsonify({"error": "Route not found"}), 404
+
+        conn.commit()
+
+        return jsonify({
+            "message": "Route deleted successfully",
+            "routeid": routeid
+        })
+
+    except Exception as error:
+        conn.rollback()
+        return jsonify({
+            "error": (
+                "Could not delete this route because it is still used by "
+                "one or more tour instances."
+            ),
+            "details": str(error)
+        }), 409
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+# ------------------------ מקטע API 5.1: תחנות של מסלול ------------------------
+@app.route("/api/routes/<int:routeid>/stations", methods=["GET"])
+def get_route_stations(routeid):
+    """
+    מחזיר את התחנות שמשויכות למסלול בלי לחשוף מזהה פנימי של תחנה.
+
+    הקוד תומך בשני מבנים אפשריים של טבלת tourstation:
+    1. קישור ישיר באמצעות routeid.
+    2. קישור באמצעות tourid, ואז מתבצע JOIN דרך guidedtour.
+    """
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+                    SELECT column_name
+                    FROM information_schema.columns
+                    WHERE table_schema = 'public'
+                      AND table_name = 'tourstation';
+                    """)
+        tourstation_columns = {row[0] for row in cur.fetchall()}
+
+        station_reference_candidates = [
+            "s_name",
+            "stationname",
+            "station_name",
+            "stationid",
+            "station_id"
+        ]
+        station_reference = next(
+            (
+                column
+                for column in station_reference_candidates
+                if column in tourstation_columns
+            ),
+            None
+        )
+
+        if station_reference is None:
+            return jsonify({
+                "error": (
+                    "Could not identify the station reference column "
+                    "inside tourstation."
+                )
+            }), 500
+
+        order_candidates = [
+            "stationorder",
+            "station_order",
+            "stoporder",
+            "stop_order",
+            "position",
+            "sequence",
+            "order_number"
+        ]
+        order_column = next(
+            (column for column in order_candidates if column in tourstation_columns),
+            None
+        )
+
+        station_join = (
+            f"s.s_name = ts.{station_reference}"
+            if station_reference in {"s_name", "stationname", "station_name"}
+            else f"s.s_name::text = ts.{station_reference}::text"
+        )
+
+        order_select = (
+            f"ts.{order_column} AS station_order"
+            if order_column
+            else "NULL::INTEGER AS station_order"
+        )
+        order_by = (
+            f"ORDER BY ts.{order_column}, s.s_name"
+            if order_column
+            else "ORDER BY s.s_name"
+        )
+
+        if "routeid" in tourstation_columns:
+            sql = f"""
+                SELECT DISTINCT
+                    s.s_name,
+                    s.s_address,
+                    s.description,
+                    {order_select}
+                FROM tourstation ts
+                JOIN station s ON {station_join}
+                WHERE ts.routeid = %s
+                {order_by};
+            """
+            params = (routeid,)
+
+        elif "tourid" in tourstation_columns:
+            sql = f"""
+                SELECT DISTINCT
+                    s.s_name,
+                    s.s_address,
+                    s.description,
+                    {order_select}
+                FROM tourstation ts
+                JOIN guidedtour gt ON gt.tourid = ts.tourid
+                JOIN station s ON {station_join}
+                WHERE gt.routeid = %s
+                {order_by};
+            """
+            params = (routeid,)
+
+        else:
+            return jsonify({
+                "error": (
+                    "The tourstation table does not contain routeid or tourid, "
+                    "so its connection to a route could not be determined."
+                )
+            }), 500
+
+        cur.execute(sql, params)
+        rows = rows_to_dicts(cur, cur.fetchall())
+
+        return jsonify(rows)
+
+    except Exception as error:
+        return jsonify({"error": str(error)}), 500
+
+    finally:
+        cur.close()
+        conn.close()
 
 
 # ------------------------ מקטע API 6: מופעי סיור עם JOINs ------------------------
@@ -264,6 +728,154 @@ def get_registrations():
     return jsonify(rows)
 
 
+# ------------------------ מקטע API 7.1: הלקוחות הרשומים למופע סיור ------------------------
+@app.route("/api/tours/<int:tourid>/customers", methods=["GET"])
+def get_tour_customers(tourid):
+    rows = query_all("""
+                     SELECT
+                         r.registrationid,
+                         c.fullname,
+                         c.phone,
+                         c.email,
+                         r.numpeople,
+                         r.amounttopay,
+                         COALESCE(rs.statusname, 'Unknown') AS status_name
+                     FROM registration r
+                              JOIN customer c ON c.customerid = r.customerid
+                              LEFT JOIN registrationstatus rs
+                                        ON rs.registrationstatusid = r.registrationstatusid
+                     WHERE r.tourid = %s
+                     ORDER BY c.fullname, r.registrationid;
+                     """, (tourid,))
+
+    for row in rows:
+        row["amounttopay"] = float(row["amounttopay"]) if row["amounttopay"] is not None else None
+
+    return jsonify(rows)
+
+
+# ------------------------ מקטע API 7.1: סטטוסים אפשריים להרשמה ------------------------
+@app.route("/api/registration-statuses", methods=["GET"])
+def get_registration_statuses():
+    rows = query_all("""
+                     SELECT registrationstatusid, statusname
+                     FROM registrationstatus
+                     ORDER BY registrationstatusid;
+                     """)
+
+    return jsonify(rows)
+
+
+# ------------------------ מקטע API 7.2: עדכון הרשמה ------------------------
+@app.route("/api/registrations/<int:registrationid>", methods=["PUT"])
+def update_registration(registrationid):
+    data = request.get_json() or {}
+
+    required_fields = [
+        "customerid",
+        "tourid",
+        "registrationdate",
+        "numpeople",
+        "registrationstatusid"
+    ]
+    missing = [field for field in required_fields if data.get(field) in (None, "")]
+
+    if missing:
+        return jsonify({
+            "error": "Missing required fields: " + ", ".join(missing)
+        }), 400
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        # amounttopay is not written here.
+        # trg_auto_calc_price recalculates it automatically before the update.
+        # trg_audit_registration saves the previous status automatically.
+        cur.execute("""
+                    UPDATE registration
+                    SET customerid = %s,
+                        tourid = %s,
+                        registrationdate = %s::date,
+                numpeople = %s,
+                        registrationstatusid = %s,
+                        notes = %s
+                    WHERE registrationid = %s
+                        RETURNING registrationid, amounttopay;
+                    """, (
+                        data.get("customerid"),
+                        data.get("tourid"),
+                        data.get("registrationdate"),
+                        data.get("numpeople"),
+                        data.get("registrationstatusid"),
+                        data.get("notes"),
+                        registrationid
+                    ))
+
+        updated = cur.fetchone()
+
+        if not updated:
+            conn.rollback()
+            return jsonify({"error": "Registration not found"}), 404
+
+        conn.commit()
+
+        return jsonify({
+            "message": "Registration updated successfully",
+            "registrationid": updated[0],
+            "amounttopay": float(updated[1]) if updated[1] is not None else None
+        })
+
+    except Exception as error:
+        conn.rollback()
+        return jsonify({"error": str(error)}), 500
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+# ------------------------ מקטע API 7.3: מחיקת הרשמה ------------------------
+@app.route("/api/registrations/<int:registrationid>", methods=["DELETE"])
+def delete_registration(registrationid):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+                    DELETE FROM registration
+                    WHERE registrationid = %s
+                        RETURNING registrationid;
+                    """, (registrationid,))
+
+        deleted = cur.fetchone()
+
+        if not deleted:
+            conn.rollback()
+            return jsonify({"error": "Registration not found"}), 404
+
+        conn.commit()
+
+        return jsonify({
+            "message": "Registration deleted successfully",
+            "registrationid": registrationid
+        })
+
+    except Exception as error:
+        conn.rollback()
+        return jsonify({
+            "error": (
+                "Could not delete this registration. "
+                "It may still be connected to payments or audit records."
+            ),
+            "details": str(error)
+        }), 409
+
+    finally:
+        cur.close()
+        conn.close()
+
+
 # ------------------------ מקטע API 8: שאילתה משלב ב - סיורים עם מקומות פנויים ------------------------
 @app.route("/api/queries/available-tours", methods=["GET"])
 def available_tours():
@@ -283,6 +895,109 @@ def available_tours():
                      GROUP BY t.tourid, t.meetingpoint, t.maxparticipants, ro.r_name
                      HAVING COALESCE(SUM(r.numpeople), 0) < t.maxparticipants
                      ORDER BY spots_left DESC;
+                     """)
+
+    return jsonify(rows)
+
+
+# ------------------------ מקטע API 8.1: שאילתה משלב ב - הכנסות חודשיות ------------------------
+@app.route("/api/queries/monthly-revenue", methods=["GET"])
+def monthly_revenue():
+    rows = query_all("""
+                     SELECT
+                         EXTRACT(YEAR FROM paymentdate)::INT AS year,
+            EXTRACT(MONTH FROM paymentdate)::INT AS month,
+            COALESCE(SUM(amount), 0) AS monthlyincome,
+            COUNT(paymentid)::INT AS transactioncount
+                     FROM payment
+                     WHERE EXTRACT(YEAR FROM paymentdate) = 2026
+                     GROUP BY EXTRACT(YEAR FROM paymentdate),
+                         EXTRACT(MONTH FROM paymentdate)
+                     ORDER BY month;
+                     """)
+
+    for row in rows:
+        row["monthlyincome"] = float(row["monthlyincome"] or 0)
+
+    return jsonify(rows)
+
+
+# ------------------------ מקטע API 8.2: שאילתה משלב ב - סיורים בשבוע הקרוב ------------------------
+@app.route("/api/queries/upcoming-tours", methods=["GET"])
+def upcoming_tours():
+    rows = query_all("""
+                     SELECT
+                         gt.tourid,
+                         rt.r_name AS routename,
+                         gt.startdate AS starting,
+                         gt.maxparticipants,
+                         (
+                             gt.maxparticipants -
+                             COALESCE((
+                                          SELECT SUM(r.numpeople)
+                                          FROM registration r
+                                          WHERE r.tourid = gt.tourid
+                                            AND COALESCE(r.registrationstatusid, 0) <> 3
+                                      ), 0)
+                             )::INT AS availableslots
+                     FROM guidedtour gt
+                              JOIN route rt ON gt.routeid = rt.routeid
+                     WHERE gt.startdate BETWEEN CURRENT_DATE
+                               AND CURRENT_DATE + INTERVAL '7 days'
+                     ORDER BY gt.startdate;
+                     """)
+
+    for row in rows:
+        row["starting"] = str(row["starting"]) if row["starting"] else ""
+
+    return jsonify(rows)
+
+
+# ------------------------ מקטע API 8.3: שאילתה עם פרמטר - לקוחות עם X הרשמות שלא שולמו ------------------------
+@app.route("/api/queries/customers-with-unpaid-registrations", methods=["GET"])
+def customers_with_unpaid_registrations():
+    count_text = request.args.get("count", "10")
+
+    try:
+        required_count = int(count_text)
+    except (TypeError, ValueError):
+        return jsonify({
+            "error": "The count parameter must be a whole number."
+        }), 400
+
+    if required_count < 0:
+        return jsonify({
+            "error": "The count parameter cannot be negative."
+        }), 400
+
+    rows = query_all("""
+                     SELECT
+                         c.fullname,
+                         c.phone,
+                         COUNT(r.registrationid)::INT AS unpaid_registrations
+                     FROM customer c
+                              JOIN registration r ON c.customerid = r.customerid
+                     WHERE r.registrationstatusid = 1
+                     GROUP BY c.customerid, c.fullname, c.phone
+                     HAVING COUNT(r.registrationid) = %s
+                     ORDER BY c.fullname;
+                     """, (required_count,))
+
+    return jsonify(rows)
+
+
+# ------------------------ מקטע API 8.4: שאילתה - מדריכים פעילים ומספר הסיורים שלהם ------------------------
+@app.route("/api/queries/active-guides", methods=["GET"])
+def active_guides():
+    rows = query_all("""
+                     SELECT
+                         CONCAT(g.firstname, ' ', g.lastname) AS guide_name,
+                         COUNT(gt.tourid)::INT AS tours_count
+                     FROM guide g
+                              JOIN guidedtour gt ON g.guideid = gt.guideid
+                     GROUP BY g.guideid, g.firstname, g.lastname
+                     HAVING COUNT(gt.tourid) > 0
+                     ORDER BY tours_count DESC, guide_name ASC;
                      """)
 
     return jsonify(rows)
