@@ -1042,11 +1042,13 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 * **בדיקת מצב חדש:** בדיקה חוזרת מראה שהחוב הנוכחי של הלקוח עומד כעת על `₪0`, מה שמוכיח שפרוצדורת העדכון בבסיס הנתונים עבדה בהצלחה.
 
 ![](/DBProject_214994642_326081148/phaseE/for_readme/23.png)
+### שאילתת דוח רווח חודשי (Monthly Revenue)
 
+צילום מסך המציג את נתוני הרווחים של החברה מסודרים לפי חודשים.
+
+* **הרצת הדוח:** בלחיצה על הכפתור `Monthly Revenue`, המערכת מריצה שאילתה מורכבת שמחשבת את הנתונים הפיננסיים.
+* **הצגת הנתונים:** הטבלה מציגה עבור כל חודש בשנה את סך ההכנסות (`INCOME`) ואות כמות העסקאות שבוצעו (`TRANSACTIONS`).
 ![](/DBProject_214994642_326081148/phaseE/for_readme/24.png)
-![](/DBProject_214994642_326081148/phaseE/for_readme/5.png)
-![](/DBProject_214994642_326081148/phaseE/for_readme/6.png)
-![](/DBProject_214994642_326081148/phaseE/for_readme/7.png)
 
 :
 ![](/DBProject_214994642_326081148/phaseE/ה...ב.png)
