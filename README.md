@@ -1,3 +1,4 @@
+<img width="1054" height="1492" alt="Designed_operating_instructions" src="https://github.com/user-attachments/assets/2eb8f207-f2ad-4c8f-8e93-49744be33e93" />
 # Guided-Tour-Management-System
 🌍 SweeTour - Tour management system
 Rut Kalimi and Shirel Farzam
@@ -891,7 +892,6 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 הוראות בסגנון נוח יותר ומסוגנן-
-![](/DBProject_214994642_326081148/phaseE/Designed operating instructions.png)
 ![](/DBProject_214994642_326081148/phaseE/Designed_operating_instructions.png)
 
 
