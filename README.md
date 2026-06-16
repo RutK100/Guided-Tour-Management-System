@@ -901,6 +901,7 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 <img width="1054" height="1492" alt="Designed_operating_instructions" src="https://github.com/user-attachments/assets/d5c2f39a-cf9d-409d-ba16-f09892d7235e" />
 ## מסכים מתוך האתר והסבר בצידם: 
 מסך כניסה 
+
 ![](/DBProject_214994642_326081148/phaseE/for_readme/1.png)
 ![](/DBProject_214994642_326081148/phaseE/for_readme/2.png)
 ![](/DBProject_214994642_326081148/phaseE/for_readme/3.png)
