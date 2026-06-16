@@ -887,16 +887,12 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 ### ראשית הוראות הפעלה לכניסה לאתר:
 
 הוראות כתובות-
-[הוראות הפעלה (קובץ טקסט)](phaseE/הוראות הפעלה.txt)
 
 
-![operating_instructions](/DBProject_214994642_326081148/phaseE/init-db/operating_instructions.png)
 
 
 
 **[operating_instructions](/DBProject_214994642_326081148/phaseE/operating_instructions)**
-
-
 
 
 
@@ -939,8 +935,7 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 
-
-
+**[operating_instructions](/DBProject_214994642_326081148/phaseE/DB_BACKUP_FINAL)**
 
 
 
