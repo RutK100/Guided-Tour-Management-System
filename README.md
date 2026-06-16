@@ -890,6 +890,7 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 [הוראות הפעלה (קובץ טקסט)](phaseE/הוראות הפעלה.txt)
 
 <img width="1054" height="1492" alt="operating_instructions" src="https://github.com/user-attachments/assets/d5c2f39a-cf9d-409d-ba16-f09892d7235e" />
+![](/DBProject_214994642_326081148/phaseE/operating_instructions.txt)
 
 
 
