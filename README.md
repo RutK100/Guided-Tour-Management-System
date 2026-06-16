@@ -893,15 +893,11 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 הוראות בסגנון נוח יותר ומסוגנן-
 
+<p dir="rtl">הוראות בסגנון נוח יותר ומסוגנן:</p>
 
-הוראות בסגנון נוח יותר ומסוגנן:
-
-![](./DBProject_214994642_326081148/phaseE/designed_operating_instructions.png)
-
-### החלק הבא ב-README שלך...
-
-
-
+<div align="center">
+    <img src="./DBProject_214994642_326081148/phaseE/designed_operating_instructions.png" alt="Instructions">
+</div>
 ### מסכים מתוך האתר והסבר בצידם:
 
 #### מסך כניסה-
