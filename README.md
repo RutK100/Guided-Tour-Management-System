@@ -887,8 +887,7 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 ### ראשית הוראות הפעלה לכניסה לאתר:
 
 הוראות כתובות-
-**[](/DBProject_214994642_326081148/phaseE/הוראות הפעלה.txt)**
-
+[הוראות הפעלה (קובץ טקסט)](phaseE/הוראות הפעלה.txt)
 
 <img width="1054" height="1492" alt="Designed_operating_instructions" src="https://github.com/user-attachments/assets/d5c2f39a-cf9d-409d-ba16-f09892d7235e" />
 
@@ -897,7 +896,10 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 
+
 הוראות בסגנון נוח יותר ומסוגנן-
+
+<img width="1054" height="1492" alt="Designed_operating_instructions" src="https://github.com/user-attachments/assets/d5c2f39a-cf9d-409d-ba16-f09892d7235e" />
 
 # טקסט בדיקה
 
