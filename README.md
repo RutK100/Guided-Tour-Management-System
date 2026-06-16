@@ -891,10 +891,10 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 ![operating_instructions](/DBProject_214994642_326081148/phaseE/operating_instructions.png)
-[הוראות הפעלה (קובץ טקסט)](phaseE/operating_instructions.txt)
 
 
 
+**[View backup4.sql](/DBProject_214994642_326081148/phaseE/backup4_custom/operating_instructions)**
 
 
 
