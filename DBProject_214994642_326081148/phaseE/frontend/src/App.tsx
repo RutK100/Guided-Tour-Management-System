@@ -334,6 +334,19 @@ export default function App() {
     setRoutePage(1);
   }, [routeSearch, routeLevelFilter, routeMaxPrice]);
 
+  // בכל חזרה לחלון האתר נטען שוב מידע עדכני מה-DB.
+  useEffect(() => {
+    const refreshWhenWindowGetsFocus = () => {
+      fetchData();
+    };
+
+    window.addEventListener("focus", refreshWhenWindowGetsFocus);
+
+    return () => {
+      window.removeEventListener("focus", refreshWhenWindowGetsFocus);
+    };
+  }, []);
+
   // ------------------------ מקטע 6: טעינת כל המידע המרכזי ------------------------
   const fetchData = async () => {
     setLoading(true);
@@ -358,7 +371,21 @@ export default function App() {
 
   // ------------------------ מקטע 7: פונקציית עזר לקריאות GET ------------------------
   const getJson = async <T,>(path: string): Promise<T> => {
-    const response = await fetch(`${API_BASE}${path}`);
+    // מוסיפים timestamp ומבטלים cache כדי שכל רענון יקבל
+    // את הנתונים העדכניים ישירות מה-API ומהטבלאות ב-PostgreSQL.
+    const separator = path.includes("?") ? "&" : "?";
+    const response = await fetch(
+        `${API_BASE}${path}${separator}_=${Date.now()}`,
+        {
+          method: "GET",
+          cache: "no-store",
+          headers: {
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache"
+          }
+        }
+    );
+
     const data = await response.json();
 
     if (!response.ok) {
@@ -1105,12 +1132,17 @@ export default function App() {
     "July", "August", "September", "October", "November", "December"
   ];
 
-  const availableTourYears = useMemo(() => {
-    const years = tours
-        .map((tour) => Number(tour.startdate?.slice(0, 4)))
-        .filter((year) => Number.isFinite(year));
+  const availableTourYears = useMemo<number[]>(() => {
+    const years: number[] = tours
+        .map((tour: Tour): number =>
+            Number(tour.startdate?.slice(0, 4))
+        )
+        .filter((year: number): boolean =>
+            Number.isFinite(year)
+        );
 
-    return Array.from(new Set(years)).sort((a, b) => a - b);
+    return Array.from(new Set<number>(years))
+        .sort((a: number, b: number) => a - b);
   }, [tours]);
 
   useEffect(() => {
@@ -1409,7 +1441,7 @@ export default function App() {
                     <div className="text-right">Actions</div>
                   </div>
 
-                  {pageItems(filteredCustomers, customerPage).map((customer) => (
+                  {pageItems<Customer>(filteredCustomers, customerPage).map((customer) => (
                       <div
                           key={customer.customerid}
                           className="grid grid-cols-5 p-4 border-b border-emerald-900/10 hover:bg-emerald-900/5 items-center gap-4"
@@ -1468,7 +1500,7 @@ export default function App() {
                     <div className="text-right">Actions</div>
                   </div>
 
-                  {pageItems(filteredGuides, guidePage).map((guide) => (
+                  {pageItems<Guide>(filteredGuides, guidePage).map((guide) => (
                       <div
                           key={guide.guideid}
                           onClick={() => setSelectedGuide(guide)}
@@ -1590,7 +1622,7 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {pageItems(filteredRoutes, routePage).map((route) => (
+                  {pageItems<RouteRecord>(filteredRoutes, routePage).map((route) => (
                       <article
                           key={route.routeid}
                           className="group relative min-h-72 bg-white/80 border border-emerald-900/15 hover:border-orange-300 hover:-translate-y-1 hover:shadow-xl transition-all overflow-hidden"
@@ -1871,7 +1903,7 @@ export default function App() {
                     <div className="text-right">Actions</div>
                   </div>
 
-                  {pageItems(filteredRegistrations, registrationPage).map((registration) => (
+                  {pageItems<Registration>(filteredRegistrations, registrationPage).map((registration) => (
                       <div
                           key={registration.registrationid}
                           className="grid grid-cols-8 p-4 border-b border-emerald-900/10 hover:bg-emerald-900/5 items-center gap-4"
@@ -2212,7 +2244,7 @@ export default function App() {
                       <div>Registered</div>
                       <div>Spots Left</div>
                     </div>
-                    {pageItems(availableTours, availableTourPage).map((tour) => (
+                    {pageItems<AvailableTour>(availableTours, availableTourPage).map((tour) => (
                         <div key={tour.tourid} className="grid grid-cols-5 p-4 border-b border-emerald-900/10 hover:bg-emerald-900/5 items-center gap-4">
                           <div className="font-medium">{tour.route_name}</div>
                           <div>{tour.meetingpoint}</div>
@@ -2241,7 +2273,7 @@ export default function App() {
                   <div>Change Date</div>
                 </div>
 
-                {pageItems(auditRows, auditPage).map((row) => (
+                {pageItems<AuditRow>(auditRows, auditPage).map((row) => (
                     <div key={row.audit_id} className="grid grid-cols-3 p-4 border-b border-emerald-900/10 hover:bg-emerald-900/5 items-center gap-4">
                       <div>Registration #{row.registrationid}</div>
                       <div>{row.old_status ?? ""}</div>

@@ -5,6 +5,20 @@ from db_connection import get_connection
 app = Flask(__name__)
 CORS(app)
 
+API_BUILD = "2026-06-16-registration-sync-v1"
+
+
+@app.after_request
+def disable_cache(response):
+    """מונע מהדפדפן או מפרוקסי להחזיר תשובות API ישנות."""
+    response.headers["Cache-Control"] = (
+        "no-store, no-cache, must-revalidate, max-age=0"
+    )
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    response.headers["X-SweetTour-API-Build"] = API_BUILD
+    return response
+
 
 # ------------------------ מקטע API 1: פונקציות עזר ------------------------
 def rows_to_dicts(cursor, rows):
@@ -29,6 +43,50 @@ def query_all(sql, params=None):
 @app.route("/")
 def home():
     return "SweetTour API is running!"
+
+
+@app.route("/api/db-info", methods=["GET"])
+def db_info():
+    """מציג בוודאות לאיזה מסד וסכמה ה-Backend מחובר כרגע."""
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+                    SELECT
+                        current_database(),
+                        current_schema(),
+                        current_user,
+                        inet_server_addr(),
+                        inet_server_port(),
+                        (
+                            SELECT COUNT(*)
+                            FROM public.registration
+                        ),
+                        (
+                            SELECT MAX(registrationid)
+                            FROM public.registration
+                        );
+                    """)
+        row = cur.fetchone()
+
+        return jsonify({
+            "api_build": API_BUILD,
+            "database": row[0],
+            "schema": row[1],
+            "user": row[2],
+            "server_address": str(row[3]) if row[3] is not None else None,
+            "server_port": row[4],
+            "registration_count": row[5],
+            "max_registrationid": row[6]
+        })
+
+    except Exception as error:
+        return jsonify({"error": str(error)}), 500
+
+    finally:
+        cur.close()
+        conn.close()
 
 
 # ------------------------ מקטע API 3: לקוחות CRUD ------------------------
@@ -314,6 +372,60 @@ def delete_guide(guideid):
     cur = conn.cursor()
 
     try:
+        # בודקים שהמדריך קיים לפני שמתחילים למחוק נתונים קשורים.
+        cur.execute("""
+                    SELECT guideid
+                    FROM guide
+                    WHERE guideid = %s;
+                    """, (guideid,))
+
+        if cur.fetchone() is None:
+            conn.rollback()
+            return jsonify({"error": "Guide not found"}), 404
+
+        # מוחקים תשלומים של הרשמות לסיורים השייכים למדריך.
+        cur.execute("""
+                    DELETE FROM payment
+                    WHERE registrationid IN (
+                        SELECT r.registrationid
+                        FROM registration r
+                                 JOIN guidedtour gt ON gt.tourid = r.tourid
+                        WHERE gt.guideid = %s
+                    );
+                    """, (guideid,))
+        deleted_payments = cur.rowcount
+
+        # מוחקים רשומות Audit של אותן הרשמות.
+        cur.execute("""
+                    DELETE FROM public.registration_audit
+                    WHERE registrationid IN (
+                        SELECT r.registrationid
+                        FROM registration r
+                                 JOIN guidedtour gt ON gt.tourid = r.tourid
+                        WHERE gt.guideid = %s
+                    );
+                    """, (guideid,))
+        deleted_audit_rows = cur.rowcount
+
+        # מוחקים את ההרשמות לסיורים של המדריך.
+        cur.execute("""
+                    DELETE FROM public.registration
+                    WHERE tourid IN (
+                        SELECT tourid
+                        FROM guidedtour
+                        WHERE guideid = %s
+                    );
+                    """, (guideid,))
+        deleted_registrations = cur.rowcount
+
+        # מוחקים את כל מופעי הסיור של המדריך.
+        cur.execute("""
+                    DELETE FROM guidedtour
+                    WHERE guideid = %s;
+                    """, (guideid,))
+        deleted_tours = cur.rowcount
+
+        # לבסוף מוחקים את המדריך עצמו.
         cur.execute("""
                     DELETE FROM guide
                     WHERE guideid = %s
@@ -327,20 +439,22 @@ def delete_guide(guideid):
             return jsonify({"error": "Guide not found"}), 404
 
         conn.commit()
+
         return jsonify({
-            "message": "Guide deleted successfully",
-            "guideid": guideid
+            "message": "Guide and all related data were deleted successfully",
+            "guideid": guideid,
+            "deleted_tours": deleted_tours,
+            "deleted_registrations": deleted_registrations,
+            "deleted_payments": deleted_payments,
+            "deleted_audit_rows": deleted_audit_rows
         })
 
     except Exception as error:
         conn.rollback()
         return jsonify({
-            "error": (
-                "Could not delete this guide. "
-                "The guide may still be assigned to one or more tour instances."
-            ),
+            "error": "Could not delete the guide and all related data.",
             "details": str(error)
-        }), 409
+        }), 500
 
     finally:
         cur.close()
@@ -682,7 +796,7 @@ def get_tours():
                          COALESCE(ts.statusname, 'Unknown') AS status_name
                      FROM guidedtour t
                               LEFT JOIN guide g ON g.guideid = t.guideid
-                              LEFT JOIN route ro ON ro.routeid = t.routeid
+                              LEFT JOIN public.route ro ON ro.routeid = t.routeid
                               LEFT JOIN tourstatus ts ON ts.tourstatusid = t.tourstatusid
                      ORDER BY t.startdate DESC, t.tourid;
                      """)
@@ -698,6 +812,69 @@ def get_tours():
 # ------------------------ מקטע API 7: הרשמות עם JOINs ------------------------
 @app.route("/api/registrations", methods=["GET"])
 def get_registrations():
+    conn = get_connection()
+    cur = conn.cursor()
+
+    try:
+        # מכריחים שימוש בסכמה public וקוראים מחדש בכל בקשה.
+        cur.execute("SET search_path TO public;")
+
+        cur.execute("""
+                    SELECT
+                        r.registrationid,
+                        r.registrationdate,
+                        r.amounttopay,
+                        r.notes,
+                        r.numpeople,
+                        r.customerid,
+                        r.tourid,
+                        r.registrationstatusid,
+                        COALESCE(c.fullname, 'Unknown customer') AS customer_name,
+                        COALESCE(ro.r_name, 'Unknown route') AS route_name,
+                        COALESCE(t.meetingpoint, '') AS meetingpoint,
+                        COALESCE(rs.statusname, 'Unknown') AS status_name
+                    FROM public.registration AS r
+                             LEFT JOIN public.customer AS c
+                                       ON c.customerid = r.customerid
+                             LEFT JOIN public.guidedtour AS t
+                                       ON t.tourid = r.tourid
+                             LEFT JOIN public.route AS ro
+                                       ON ro.routeid = t.routeid
+                             LEFT JOIN public.registrationstatus AS rs
+                                       ON rs.registrationstatusid = r.registrationstatusid
+                    ORDER BY r.registrationdate DESC, r.registrationid DESC;
+                    """)
+
+        rows = rows_to_dicts(cur, cur.fetchall())
+
+        for row in rows:
+            row["registrationdate"] = (
+                str(row["registrationdate"])
+                if row["registrationdate"]
+                else ""
+            )
+            row["amounttopay"] = (
+                float(row["amounttopay"])
+                if row["amounttopay"] is not None
+                else None
+            )
+
+        response = jsonify(rows)
+        response.headers["X-Database-Name"] = conn.get_dsn_parameters().get("dbname", "")
+        response.headers["X-Data-Source"] = "public.registration"
+        return response
+
+    except Exception as error:
+        return jsonify({"error": str(error)}), 500
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.route("/api/registrations/<int:registrationid>", methods=["GET"])
+def get_registration_by_id(registrationid):
+    """מחזיר הרשמה יחידה ישירות מהמסד, לצורך בדיקה וחיפוש מדויק."""
     rows = query_all("""
                      SELECT
                          r.registrationid,
@@ -712,20 +889,34 @@ def get_registrations():
                          COALESCE(ro.r_name, 'Unknown route') AS route_name,
                          COALESCE(t.meetingpoint, '') AS meetingpoint,
                          COALESCE(rs.statusname, 'Unknown') AS status_name
-                     FROM registration r
-                              LEFT JOIN customer c ON c.customerid = r.customerid
-                              LEFT JOIN guidedtour t ON t.tourid = r.tourid
-                              LEFT JOIN route ro ON ro.routeid = t.routeid
-                              LEFT JOIN registrationstatus rs
+                     FROM public.registration AS r
+                              LEFT JOIN public.customer AS c
+                                        ON c.customerid = r.customerid
+                              LEFT JOIN public.guidedtour AS t
+                                        ON t.tourid = r.tourid
+                              LEFT JOIN public.route AS ro
+                                        ON ro.routeid = t.routeid
+                              LEFT JOIN public.registrationstatus AS rs
                                         ON rs.registrationstatusid = r.registrationstatusid
-                     ORDER BY r.registrationdate DESC, r.registrationid DESC;
-                     """)
+                     WHERE r.registrationid = %s;
+                     """, (registrationid,))
 
-    for row in rows:
-        row["registrationdate"] = str(row["registrationdate"]) if row["registrationdate"] else ""
-        row["amounttopay"] = float(row["amounttopay"]) if row["amounttopay"] is not None else None
+    if not rows:
+        return jsonify({"error": "Registration not found"}), 404
 
-    return jsonify(rows)
+    row = rows[0]
+    row["registrationdate"] = (
+        str(row["registrationdate"])
+        if row["registrationdate"]
+        else ""
+    )
+    row["amounttopay"] = (
+        float(row["amounttopay"])
+        if row["amounttopay"] is not None
+        else None
+    )
+
+    return jsonify(row)
 
 
 # ------------------------ מקטע API 7.1: הלקוחות הרשומים למופע סיור ------------------------
@@ -740,9 +931,9 @@ def get_tour_customers(tourid):
                          r.numpeople,
                          r.amounttopay,
                          COALESCE(rs.statusname, 'Unknown') AS status_name
-                     FROM registration r
-                              JOIN customer c ON c.customerid = r.customerid
-                              LEFT JOIN registrationstatus rs
+                     FROM public.registration r
+                              JOIN public.customer c ON c.customerid = r.customerid
+                              LEFT JOIN public.registrationstatus rs
                                         ON rs.registrationstatusid = r.registrationstatusid
                      WHERE r.tourid = %s
                      ORDER BY c.fullname, r.registrationid;
@@ -759,7 +950,7 @@ def get_tour_customers(tourid):
 def get_registration_statuses():
     rows = query_all("""
                      SELECT registrationstatusid, statusname
-                     FROM registrationstatus
+                     FROM public.registrationstatus
                      ORDER BY registrationstatusid;
                      """)
 
@@ -793,7 +984,7 @@ def update_registration(registrationid):
         # trg_auto_calc_price recalculates it automatically before the update.
         # trg_audit_registration saves the previous status automatically.
         cur.execute("""
-                    UPDATE registration
+                    UPDATE public.registration
                     SET customerid = %s,
                         tourid = %s,
                         registrationdate = %s::date,
@@ -843,7 +1034,7 @@ def delete_registration(registrationid):
 
     try:
         cur.execute("""
-                    DELETE FROM registration
+                    DELETE FROM public.registration
                     WHERE registrationid = %s
                         RETURNING registrationid;
                     """, (registrationid,))
@@ -887,11 +1078,11 @@ def available_tours():
                          COALESCE(SUM(r.numpeople), 0)::INT AS total_registered,
                          (t.maxparticipants - COALESCE(SUM(r.numpeople), 0))::INT AS spots_left,
                          COALESCE(ro.r_name, 'Unknown route') AS route_name
-                     FROM guidedtour t
-                              LEFT JOIN registration r
+                     FROM public.guidedtour t
+                              LEFT JOIN public.registration r
                                         ON t.tourid = r.tourid
                                             AND COALESCE(r.registrationstatusid, 0) <> 3
-                              LEFT JOIN route ro ON ro.routeid = t.routeid
+                              LEFT JOIN public.route ro ON ro.routeid = t.routeid
                      GROUP BY t.tourid, t.meetingpoint, t.maxparticipants, ro.r_name
                      HAVING COALESCE(SUM(r.numpeople), 0) < t.maxparticipants
                      ORDER BY spots_left DESC;
@@ -935,13 +1126,13 @@ def upcoming_tours():
                              gt.maxparticipants -
                              COALESCE((
                                           SELECT SUM(r.numpeople)
-                                          FROM registration r
+                                          FROM public.registration r
                                           WHERE r.tourid = gt.tourid
                                             AND COALESCE(r.registrationstatusid, 0) <> 3
                                       ), 0)
                              )::INT AS availableslots
-                     FROM guidedtour gt
-                              JOIN route rt ON gt.routeid = rt.routeid
+                     FROM public.guidedtour gt
+                              JOIN public.route rt ON gt.routeid = rt.routeid
                      WHERE gt.startdate BETWEEN CURRENT_DATE
                                AND CURRENT_DATE + INTERVAL '7 days'
                      ORDER BY gt.startdate;
@@ -975,8 +1166,8 @@ def customers_with_unpaid_registrations():
                          c.fullname,
                          c.phone,
                          COUNT(r.registrationid)::INT AS unpaid_registrations
-                     FROM customer c
-                              JOIN registration r ON c.customerid = r.customerid
+                     FROM public.customer c
+                              JOIN public.registration r ON c.customerid = r.customerid
                      WHERE r.registrationstatusid = 1
                      GROUP BY c.customerid, c.fullname, c.phone
                      HAVING COUNT(r.registrationid) = %s
@@ -1161,7 +1352,7 @@ def cancel_tour(tourid):
 def registration_audit():
     rows = query_all("""
                      SELECT audit_id, registrationid, old_status, change_date
-                     FROM registration_audit
+                     FROM public.registration_audit
                      ORDER BY change_date DESC;
                      """)
 
@@ -1173,4 +1364,4 @@ def registration_audit():
 
 # ------------------------ מקטע API 15: הרצת השרת ------------------------
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=False)
