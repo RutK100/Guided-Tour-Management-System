@@ -919,6 +919,9 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 ![](/DBProject_214994642_326081148/phaseE/for_readme/1.png)
 ![](/DBProject_214994642_326081148/phaseE/for_readme/2.png)
 
+![](/DBProject_214994642_326081148/phaseE/for_readme/3.png)
+
+
 ### מסך הוספת לקוח (Insert)
 
 צילום מסך המציג את טבלת הלקוחות ואת חלונית ההוספה.
@@ -926,15 +929,16 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 * **טבלת הנתונים:** מציגה ברקע את כל הלקוחות הקיימים עם אפשרות לעריכה ומחיקה.
 * **טופס הוספה (`Add Customer`):** חלונית להזנת פרטי הלקוח (תעודת זהות, שם מלא, אימייל, טלפון ותאריך).
 * **שמירה:** לחיצה על `Save` שולחת פקודת `INSERT` ישירות לטבלת הלקוחות בבסיס הנתונים.
-* 
-![](/DBProject_214994642_326081148/phaseE/for_readme/3.png)
+
+
+![](/DBProject_214994642_326081148/phaseE/for_readme/4.png)
+
 ### מסך הצלחת הוספה ושליפת נתונים (Select)
 
 צילום מסך המציג את אישור ההוספה ואת הצגת הרשומה החדשה במערכת.
 
 * **הודעת הצלחה:** למעלה מופיע הבאנר הירוק `Customer added successfully` המאשר שהרשומה נשמרה ב-DB.
 * **מנגנון חיפוש ושליפה:** בשדה החיפוש הוקלד השם המבוקש, והמערכת ביצעה שאילתת `SELECT` שהחזירה במדויק את פרטי הלקוחה שהתווספה.
-![](/DBProject_214994642_326081148/phaseE/for_readme/4.png)
 
 ![](/DBProject_214994642_326081148/phaseE/for_readme/5.png)
 
