@@ -890,11 +890,11 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 [הוראות הפעלה (קובץ טקסט)](phaseE/הוראות הפעלה.txt)
 
 
-![operating_instructions](/DBProject_214994642_326081148/phaseE/operating_instructions.png)
+![operating_instructions](/DBProject_214994642_326081148/phaseE/init-db/operating_instructions.png)
 
 
 
-**[View backup4.sql](/DBProject_214994642_326081148/phaseE/init-db/operating_instructions)**
+**[operating_instructions](/DBProject_214994642_326081148/phaseE/init-db/operating_instructions)**
 
 
 
