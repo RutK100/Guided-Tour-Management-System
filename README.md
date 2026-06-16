@@ -904,7 +904,9 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 הוראות בסגנון נוח יותר ומסוגנן:
 
+![](/DBProject_214994642_326081148/phaseE/for_readme/1.png)
 ### מסכים מתוך האתר והסבר בצידם:
+![](/DBProject_214994642_326081148/phaseE/ה...ב.png)
 
 #### מסך כניסה-
 הסבר-
