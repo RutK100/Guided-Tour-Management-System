@@ -13,7 +13,7 @@ Rut Kalimi and Shirel Farzam
 - [Phase 2: Queries](#phase-2-Queries)
 - [Phase 3: Integrates](#phase-3-Integrates)
 - [Phase 4: PL/pgSQL](#phase-4-plpgsql)
-
+- [Phase 5: graphical interface](#phase-5-graphical-interface)
 
 # Phase 1: Design and Build the Database  
 
@@ -881,6 +881,39 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 **[View backup4.sql](/DBProject_214994642_326081148/phaseD/backup4_custom)**
 
 
+
+## Phase 5: graphical interface
+
+### ראשית הוראות הפעלה לכניסה לאתר:
+
+הוראות כתובות-
+**[](/DBProject_214994642_326081148/phaseE/הוראות הפעלה.txt)**
+
+הוראות בסגנון נוח יותר ומסוגנן-
+![](/DBProject_214994642_326081148/phaseE/הוראות הפעלה-מעוצב.png)
+
+### מסכים מתוך האתר והסבר בצידם:
+
+#### מסך כניסה-
+הסבר-
+תמונה-
+![](/DBProject_214994642_326081148/phaseE/ה...ב.png)
+
+
+#### דוגמא להכנסת נתונים מתוך מסך*****  -
+הסבר-
+תמונה-
+
+
+#### דוגמא לעריכת נתונית מתוך מסך *******  -
+הסבר-
+תמונה-
+
+#### דוגמא למחיקת נתונים מתוך מסך*****  -
+הסבר-
+תמונה-
+
+### גיסוי לבסיס הנתונים:
 
 
 
