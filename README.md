@@ -889,8 +889,10 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 הוראות כתובות-
 **[](/DBProject_214994642_326081148/phaseE/הוראות הפעלה.txt)**
 
+
 הוראות בסגנון נוח יותר ומסוגנן-
 ![](/DBProject_214994642_326081148/phaseE/הוראות הפעלה-מעוצב.png)
+![Instructions](/DBProject_214994642_326081148/phaseE/הוראות הפעלה-מעוצב.png)
 
 ### מסכים מתוך האתר והסבר בצידם:
 
