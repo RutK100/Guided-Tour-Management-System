@@ -899,13 +899,40 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 הוראות בסגנון נוח יותר ומסוגנן-
 
 <img width="1054" height="1492" alt="Designed_operating_instructions" src="https://github.com/user-attachments/assets/d5c2f39a-cf9d-409d-ba16-f09892d7235e" />
-
-# טקסט בדיקה
-
-הוראות בסגנון נוח יותר ומסוגנן:
-
+## מסכים מתוך האתר והסבר בצידם: 
+מסך כניסה 
 ![](/DBProject_214994642_326081148/phaseE/for_readme/1.png)
-### מסכים מתוך האתר והסבר בצידם:
+![](/DBProject_214994642_326081148/phaseE/for_readme/2.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/3.png)
+
+![](/DBProject_214994642_326081148/phaseE/for_readme/4.png)
+
+![](/DBProject_214994642_326081148/phaseE/for_readme/5.png)
+
+![](/DBProject_214994642_326081148/phaseE/for_readme/6.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/7.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/8.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/9.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/10.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/11.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/12.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/13.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/14.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/15.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/16.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/17.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/18.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/19.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/20.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/21.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/22.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/23.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/24.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/5.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/6.png)
+![](/DBProject_214994642_326081148/phaseE/for_readme/7.png)
+
+:
 ![](/DBProject_214994642_326081148/phaseE/ה...ב.png)
 
 #### מסך כניסה-
