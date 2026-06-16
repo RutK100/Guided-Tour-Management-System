@@ -894,7 +894,7 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 
 
-**[operating_instructions](/DBProject_214994642_326081148/phaseE/init-db/operating_instructions)**
+**[operating_instructions](/DBProject_214994642_326081148/phaseE/operating_instructions)**
 
 
 
