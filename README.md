@@ -894,8 +894,11 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 הוראות בסגנון נוח יותר ומסוגנן-
 
 
+הוראות בסגנון נוח יותר ומסוגנן:
+
 ![](./DBProject_214994642_326081148/phaseE/designed_operating_instructions.png)
 
+### החלק הבא ב-README שלך...
 
 
 
