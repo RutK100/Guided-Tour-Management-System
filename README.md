@@ -890,7 +890,7 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 **[](/DBProject_214994642_326081148/phaseE/הוראות הפעלה.txt)**
 
 
-![](./DBProject_214994642_326081148/phaseE/designed_operating_instructions.png)
+![](./DBProject_214994642_326081148/phaseE/Designed%20operating%20instructions.png)
 הוראות בסגנון נוח יותר ומסוגנן-
 
 # טקסט בדיקה
