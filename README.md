@@ -898,6 +898,12 @@ ERROR: duplicate key value violates unique constraint "uni_guide_phone"
 
 הוראות בסגנון נוח יותר ומסוגנן-
 
+
+הסבר על נתוני האתר- יש שמות של לקוחות ומדריכים שנראים כך: customer 12 
+זה לא שימוש בID זה פשוט השמות שלהם מהמאגר של הזוג בנות השני שהתממשקנו עם המערכת שלהן
+כמובן לא נגענו בנתונים שלהם ולא שינינו כלום, אבל רק לשים לב שלא עברנו על הדרישה הזו של הID.
+
+
 <img width="1054" height="1492" alt="Designed_operating_instructions" src="https://github.com/user-attachments/assets/d5c2f39a-cf9d-409d-ba16-f09892d7235e" />
 ## מסכים מתוך האתר והסבר בצידם: 
 ### מסך כניסה ראשי (Dashboard)
